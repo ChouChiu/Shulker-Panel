@@ -1,0 +1,5 @@
+allowBuilds:
+  '@biomejs/biome': false
+  '@vscode/vsce-sign': false
+  esbuild: false
+  keytar: false
