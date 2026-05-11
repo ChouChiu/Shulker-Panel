@@ -10,7 +10,7 @@ import * as vscode from "vscode";
  * from l10n/bundle.l10n.json (default) and l10n/bundle.l10n.{language}.json.
  */
 export function localize(message: string, ...args: Array<string | number | boolean>): string {
-    return vscode.l10n.t(message, ...args);
+  return vscode.l10n.t(message, ...args);
 }
 
 /**
