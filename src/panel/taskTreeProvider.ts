@@ -20,6 +20,7 @@ export class TaskTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
   readonly onDidChangeTreeData = this._onDidChangeTreeData.event;
 
   private taskDetector: TaskDetector;
+  private projectInfo: ProjectInfo | null = null;
   private rootItems: vscode.TreeItem[] = [];
 
   constructor(taskDetector: TaskDetector) {
@@ -39,7 +40,7 @@ export class TaskTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
     }
 
     this.rootItems = this.buildTree(taskInfos, projectInfo);
-    this._onDidChangeTreeData.fire();
+    this._onDidChangeTreeData.fire(undefined);
   }
 
   /**
