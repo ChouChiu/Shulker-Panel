@@ -1,0 +1,42 @@
+name: Feature request
+description: Suggest an idea or improvement for Shulker Panel
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the problem and the outcome you want.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the idea briefly.
+      placeholder: A short summary of the feature request.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What pain point does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Explain the preferred approach or behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Mention other options you considered, if any.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add mockups, examples, or related links.
