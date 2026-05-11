@@ -20,7 +20,6 @@ export class TaskTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
   readonly onDidChangeTreeData = this._onDidChangeTreeData.event;
 
   private taskDetector: TaskDetector;
-  private projectInfo: ProjectInfo | null = null;
   private rootItems: vscode.TreeItem[] = [];
 
   constructor(taskDetector: TaskDetector) {
@@ -31,8 +30,6 @@ export class TaskTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
    * Refreshes the entire tree. Called when tasks change or project info updates.
    */
   async refresh(projectInfo: ProjectInfo): Promise<void> {
-    this.projectInfo = projectInfo;
-
     // Re-scan tasks
     let taskInfos: TaskInfo[] = [];
     if (projectInfo.tasksDir) {
