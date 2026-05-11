@@ -16,7 +16,7 @@
 
 ### 从 VSIX 安装
 
-先构建 VSIX 包，再用 VS Code 安装：
+先从 [Release](https://github.com/ChouChiu/Shulker-Panel/releases/latest)下载或者构建 VSIX 包，再用 VS Code 安装：
 
 ```bash
 pnpm package

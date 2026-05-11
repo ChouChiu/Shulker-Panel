@@ -16,7 +16,7 @@ VS Code extension for ShulkerRDK projects, providing a sidebar task panel, comma
 
 ### From VSIX
 
-Build a VSIX package and install it with VS Code:
+From [Release](https://github.com/ChouChiu/Shulker-Panel/releases/latest) download or build a VSIX package and install it with VS Code:
 
 ```bash
 pnpm package
