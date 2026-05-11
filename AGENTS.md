@@ -1,62 +1,55 @@
 # Shulker Panel — AI Agent Instructions
 
-A VS Code extension for the [ShulkerRDK](https://github.com/LiPolymer/Shulker-in-editor) Minecraft project framework. Provides a sidebar task panel, command shortcuts, and terminal integration for `.lvt` task files.
+VS Code extension for ShulkerRDK task-panel and terminal actions. For user-facing background, link instead of duplicating:
+- [English README](.github/README.md)
+- [中文 README](.github/README.zh-cn.md)
+- [English contributing guide](.github/CONTRIBUTING.md)
+- [中文 contributing guide](.github/CONTRIBUTING.zh-cn.md)
 
 ## Build & Quality
 
-| Command         | Purpose                                              |
-| --------------- | ---------------------------------------------------- |
-| `pnpm build`    | Compile TypeScript via esbuild → `dist/extension.js` |
-| `pnpm watch`    | Build with `--watch` for development                 |
-| `pnpm lint`     | Check with Biome                                     |
-| `pnpm lint:fix` | Auto-fix lint issues                                 |
-| `pnpm format`   | Format source with Biome                             |
-| `pnpm package`  | Build + `vsce package` → `.vsix`                     |
+| Command         | Purpose                                               |
+| --------------- | ----------------------------------------------------- |
+| `pnpm build`    | Bundle TypeScript to `dist/extension.js` with esbuild |
+| `pnpm watch`    | Rebuild on file changes                               |
+| `pnpm lint`     | Run Biome checks for `src/`                           |
+| `pnpm lint:fix` | Run Biome checks with `--write` for `src/`            |
+| `pnpm format`   | Run Biome formatter with `--write` for `src/`         |
+| `pnpm package`  | Build and create a `.vsix` package                    |
+| `pnpm publish`  | Build and publish a `.vsix` package                   |
 
-- **Runtime target:** VS Code `^1.118.0`, Node 18+
-- **Formatting:** Biome (2-space indent, double quotes, trailing commas, 120-char line width). Never add eslint or prettier configs.
-- **TypeScript:** Strict mode, ES2022 target, CommonJS modules (required by VS Code extensions)
-- **Bundle:** esbuild bundles everything into a single `dist/extension.js`. `vscode` module is externalized.
+- Runtime target: VS Code `^1.118.0`, Node 18+
+- Formatting: Biome, 2-space indent, double quotes, trailing commas, 120-char line width. Do not add ESLint or Prettier configs.
+- TypeScript: strict mode, ES2022 target, CommonJS modules
+- Bundle: esbuild emits a single `dist/extension.js`; `vscode` stays external
 
 ## Architecture
 
 ```
-extension.ts          — activate/deactivate, command registration, wire-up
-  config.ts            — VS Code settings access (shulkerPanel.*)
-  detector/
-    projectDetector.ts — scan workspace for shulker/ directory, parse proj.json
-    taskDetector.ts    — scan shulker/tasks/ for .lvt files, watch for changes
-  executor/
-    terminalManager.ts — persistent "ShulkerRDK" terminal, wraps srdk CLI
-  panel/
-    taskTreeProvider.ts — TreeDataProvider for sidebar (6 categories + dynamic tasks)
-    treeItem.ts         — CategoryTreeItem, TaskTreeItem, CommandTreeItem models
+src/extension.ts      — activate/deactivate, command registration, refresh flow
+src/config.ts         — `shulkerPanel.*` settings
+src/detector/         — project detection and `.lvt` file watching
+src/executor/         — persistent ShulkerRDK terminal and `srdk` execution
+src/panel/            — tree provider and tree item models
 ```
 
-**Three-layer design:** Detection → Execution → UI Panel. Extension entry is `src/extension.ts`, output is `dist/extension.js`.
+Three-layer design: Detection → Execution → UI Panel. Entry point: `src/extension.ts`. Build output: `dist/extension.js`.
 
-## Key Conventions
+## Codebase Rules
 
-### Tree Item Routing via `contextValue`
-Commands are dispatched through `contextValue` on tree items. When adding commands to `package.json`, match the `when` clause to the item's contextValue:
-- `taskItem` — runnable `.lvt` task
-- `configItem` — config file (no run action)
-- `commandItem` — command without input
-- `commandItemWithInput` — command that prompts for input
-- `category` — folder (no actions)
+- Use `TerminalManager` for every `srdk` command. Never spawn ad-hoc terminals.
+- Resolve the binary with `TerminalManager.platformAwarePath()` so Windows uses `srdk.exe`.
+- Keep `contextValue` constants in `src/panel/treeItem.ts` in sync with `when` clauses in `package.json`.
+- User-facing labels, tooltips, and prompts are Simplified Chinese.
+- Keep command and setting titles/descriptions localized in `package.nls.json`, `package.nls.zh-cn.json`, and `l10n/`; update both language variants together.
+- Runtime strings that are not contributed metadata should go through `src/localize.ts`.
+- The extension only reads `workspace.workspaceFolders?.[0]`; multi-root workspaces are not supported.
+- `ProjectDetector.getInfo()` caches results; call `detect()` again after workspace or task-file changes.
+- The extension does not preflight-check the configured `srdk` binary.
+- `.lvt` file watching is debounced by 300ms.
 
-### Platform-Aware Binary Path
-The `srdk` binary is named `srdk.exe` on Windows, `srdk` on Unix. `TerminalManager.platformAwarePath()` handles this. Always use this method when referencing the binary path.
+## Editing Guidance
 
-### Chinese UI Labels
-All tree labels, tooltips, and user-facing prompts are in Simplified Chinese. This is intentional, not missing i18n.
-
-### Persistent Terminal
-One named "ShulkerRDK" terminal is reused across commands. Use `TerminalManager` for all srdk execution — never spawn ad-hoc terminals.
-
-## Pitfalls
-
-- **Cached project detection:** `ProjectDetector.getInfo()` caches result. Call `detect()` first if project structure may have changed.
-- **Single workspace folder:** Only `workspace.workspaceFolders?.[0]` is used. Multi-root workspaces are not supported.
-- **No srdk existence check:** Extension assumes the binary exists at the configured path. Commands fail silently if not found.
-- **File watching debounce:** 300ms debounce on `.lvt` file watcher. Rapid file creates are coalesced.
+- Prefer small, local edits that preserve existing command ids and tree-item context values.
+- When user-facing behavior changes, update the bilingual docs instead of duplicating instructions here.
+- If a change touches command wiring, update `package.json`, `src/extension.ts`, and `src/panel/treeItem.ts` together.
