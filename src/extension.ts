@@ -3,6 +3,7 @@ import { getAutoRefresh, getShowWarning, getSrdkPath } from "./config";
 import { ProjectDetector } from "./detector/projectDetector";
 import { TaskDetector } from "./detector/taskDetector";
 import { TerminalManager } from "./executor/terminalManager";
+import { localize } from "./localize";
 import { TaskTreeProvider } from "./panel/taskTreeProvider";
 import { CommandTreeItem, TaskTreeItem } from "./panel/treeItem";
 
@@ -62,12 +63,13 @@ async function refreshPanel(): Promise<void> {
 
   // Update TreeView message with project info
   if (info.isValid && info.name) {
-    const typeLabel = info.type === "MP" ? "整合包" : info.type === "RP" ? "资源包" : "项目";
-    treeView.message = `${typeLabel}: ${info.name} @${info.version ?? "?"}`;
+    const typeLabel =
+      info.type === "MP" ? localize("Modpack") : info.type === "RP" ? localize("Resource Pack") : localize("Project");
+    treeView.message = localize("{0}: {1} @{2}", typeLabel, info.name, info.version ?? "?");
   } else if (info.isValid) {
-    treeView.message = "ShulkerRDK 项目已检测到";
+    treeView.message = localize("ShulkerRDK project detected");
   } else {
-    treeView.message = getShowWarning() ? "⚠ 未检测到 ShulkerRDK 项目" : undefined;
+    treeView.message = getShowWarning() ? localize("⚠ No ShulkerRDK project detected") : undefined;
   }
 
   // Refresh tree data
@@ -129,7 +131,7 @@ function registerCommands(context: vscode.ExtensionContext): void {
       }
       if (commandStr) {
         vscode.env.clipboard.writeText(commandStr);
-        vscode.window.showInformationMessage(`已复制: ${commandStr}`);
+        vscode.window.showInformationMessage(localize("Copied: {0}", commandStr));
       }
     }),
   );
@@ -151,13 +153,13 @@ function registerCommands(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     vscode.commands.registerCommand("shulkerPanel.projInfo", () => executeRawCommand("srdk c proj i")),
     vscode.commands.registerCommand("shulkerPanel.projChname", () =>
-      terminalManager.runWithInput("proj chname", [], "输入新的项目名称", "My Project"),
+      terminalManager.runWithInput("proj chname", [], localize("Enter new project name"), "My Project"),
     ),
     vscode.commands.registerCommand("shulkerPanel.projChroot", () =>
-      terminalManager.runWithInput("proj chroot", [], "输入新的资源根目录路径", "./src/"),
+      terminalManager.runWithInput("proj chroot", [], localize("Enter new resource root path"), "./src/"),
     ),
     vscode.commands.registerCommand("shulkerPanel.projChout", () =>
-      terminalManager.runWithInput("proj chout", [], "输入新的输出目录路径", "./build/"),
+      terminalManager.runWithInput("proj chout", [], localize("Enter new output directory path"), "./build/"),
     ),
   );
 
@@ -169,7 +171,7 @@ function registerCommands(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("shulkerPanel.vermSminor", () => executeRawCommand("srdk c verm sminor")),
     vscode.commands.registerCommand("shulkerPanel.vermSfix", () => executeRawCommand("srdk c verm sfix")),
     vscode.commands.registerCommand("shulkerPanel.vermSet", () =>
-      terminalManager.runWithInput("verm set", [], "输入版本号", "1.0.0"),
+      terminalManager.runWithInput("verm set", [], localize("Enter version number"), "1.0.0"),
     ),
   );
 
@@ -178,13 +180,19 @@ function registerCommands(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     vscode.commands.registerCommand("shulkerPanel.envList", () => executeRawCommand("srdk c env list")),
     vscode.commands.registerCommand("shulkerPanel.envGet", () =>
-      terminalManager.runWithInput("env get", [], "输入环境变量名", "project.name"),
+      terminalManager.runWithInput("env get", [], localize("Enter env variable name"), "project.name"),
     ),
     vscode.commands.registerCommand("shulkerPanel.envSet", () =>
-      terminalManager.runWithTwoInputs("env set", "输入环境变量名", "my.var", "输入环境变量值", "value"),
+      terminalManager.runWithTwoInputs(
+        "env set",
+        localize("Enter env variable name"),
+        "my.var",
+        localize("Enter env variable value"),
+        "value",
+      ),
     ),
     vscode.commands.registerCommand("shulkerPanel.envRemove", () =>
-      terminalManager.runWithInput("env remove", [], "输入要删除的环境变量名", "my.var"),
+      terminalManager.runWithInput("env remove", [], localize("Enter env variable to remove"), "my.var"),
     ),
   );
 
@@ -195,14 +203,14 @@ function registerCommands(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("shulkerPanel.mrpRestore", () => executeRawCommand("srdk c mrp r")),
     vscode.commands.registerCommand("shulkerPanel.mrpExport", () => executeRawCommand("srdk c mrp e")),
     vscode.commands.registerCommand("shulkerPanel.mrpAdd", () =>
-      terminalManager.runWithInput("mrp add", [], "输入 Modrinth slug/URL 或项目ID", "sodium"),
+      terminalManager.runWithInput("mrp add", [], localize("Enter Modrinth slug/URL or project ID"), "sodium"),
     ),
     vscode.commands.registerCommand("shulkerPanel.mrpUpdate", () => executeRawCommand("srdk c mrp u")),
     vscode.commands.registerCommand("shulkerPanel.mrpLock", () =>
-      terminalManager.runWithInput("mrp lock", [], "输入要锁定的文件名（部分匹配）", "sodium"),
+      terminalManager.runWithInput("mrp lock", [], localize("Enter filename to lock (partial match)"), "sodium"),
     ),
     vscode.commands.registerCommand("shulkerPanel.mrpUnlock", () =>
-      terminalManager.runWithInput("mrp unlock", [], "输入要解锁的文件名（部分匹配）", "sodium"),
+      terminalManager.runWithInput("mrp unlock", [], localize("Enter filename to unlock (partial match)"), "sodium"),
     ),
     vscode.commands.registerCommand("shulkerPanel.mrpClean", () => executeRawCommand("srdk c mrp clean")),
   );
@@ -245,28 +253,34 @@ function handleInputCommand(commandString: string): void {
 
   // Determine input type based on command
   if (command.startsWith("env set")) {
-    terminalManager.runWithTwoInputs("env set", "环境变量名", "key", "环境变量值", "value");
+    terminalManager.runWithTwoInputs(
+      "env set",
+      localize("Enter env variable name"),
+      "key",
+      localize("Enter env variable value"),
+      "value",
+    );
   } else if (command.startsWith("env get")) {
-    terminalManager.runWithInput("env get", [], "环境变量名", "key");
+    terminalManager.runWithInput("env get", [], localize("Enter env variable name"), "key");
   } else if (command.startsWith("env remove")) {
-    terminalManager.runWithInput("env remove", [], "要删除的变量名", "key");
+    terminalManager.runWithInput("env remove", [], localize("Enter env variable to remove"), "key");
   } else if (command.startsWith("verm set")) {
-    terminalManager.runWithInput("verm set", [], "版本号", "1.0.0");
+    terminalManager.runWithInput("verm set", [], localize("Enter version number"), "1.0.0");
   } else if (command.startsWith("proj chname")) {
-    terminalManager.runWithInput("proj chname", [], "项目名称", "My Project");
+    terminalManager.runWithInput("proj chname", [], localize("Enter new project name"), "My Project");
   } else if (command.startsWith("proj chroot")) {
-    terminalManager.runWithInput("proj chroot", [], "资源根目录", "./src/");
+    terminalManager.runWithInput("proj chroot", [], localize("Enter new resource root path"), "./src/");
   } else if (command.startsWith("proj chout")) {
-    terminalManager.runWithInput("proj chout", [], "输出目录", "./build/");
+    terminalManager.runWithInput("proj chout", [], localize("Enter new output directory path"), "./build/");
   } else if (command.startsWith("mrp add")) {
-    terminalManager.runWithInput("mrp add", [], "Modrinth slug/URL", "sodium");
+    terminalManager.runWithInput("mrp add", [], localize("Enter Modrinth slug/URL or project ID"), "sodium");
   } else if (command.startsWith("mrp lock")) {
-    terminalManager.runWithInput("mrp lock", [], "文件名匹配", "");
+    terminalManager.runWithInput("mrp lock", [], localize("Enter filename to lock (partial match)"), "");
   } else if (command.startsWith("mrp unlock")) {
-    terminalManager.runWithInput("mrp unlock", [], "文件名匹配", "");
+    terminalManager.runWithInput("mrp unlock", [], localize("Enter filename to unlock (partial match)"), "");
   } else {
     // Generic: just ask for input
-    terminalManager.runWithInput(command, [], "输入参数", "");
+    terminalManager.runWithInput(command, [], localize("Enter parameter"), "");
   }
 }
 
@@ -276,7 +290,7 @@ function handleInputCommand(commandString: string): void {
 async function showQuickPick(): Promise<void> {
   const info = projectDetector.getInfo();
   if (!info?.isValid) {
-    vscode.window.showWarningMessage("当前工作区不是 ShulkerRDK 项目");
+    vscode.window.showWarningMessage(localize("Current workspace is not a ShulkerRDK project"));
     return;
   }
 
@@ -288,7 +302,7 @@ async function showQuickPick(): Promise<void> {
     if (!task.isConfig) {
       items.push({
         label: `$(file-code) ${task.name}`,
-        description: `任务 — ${task.description || task.filePath}`,
+        description: localize("Task — {0}", task.description || task.filePath),
         detail: `srdk c task ${task.name}`,
       });
     }
@@ -298,7 +312,7 @@ async function showQuickPick(): Promise<void> {
   for (const cmd of ["build", "dev", "publish", "run"]) {
     items.push({
       label: `$(rocket) ${cmd}`,
-      description: "构建命令",
+      description: localize("Build command"),
       detail: `srdk ${cmd}`,
     });
   }
@@ -307,13 +321,13 @@ async function showQuickPick(): Promise<void> {
   for (const cmd of ["proj i", "verm show", "env list"]) {
     items.push({
       label: `$(info) ${cmd}`,
-      description: "信息查询",
+      description: localize("Info query"),
       detail: `srdk c ${cmd}`,
     });
   }
 
   const selected = await vscode.window.showQuickPick(items, {
-    placeHolder: "选择要执行的任务或命令...",
+    placeHolder: localize("Select a task or command..."),
     matchOnDescription: true,
     matchOnDetail: true,
   });

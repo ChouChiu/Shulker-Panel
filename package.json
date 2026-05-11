@@ -31,7 +31,7 @@
       "activitybar": [
         {
           "id": "shulker-panel",
-          "title": "Shulker Panel",
+          "title": "%viewsContainers.activitybar.shulker-panel.title%",
           "icon": "assets/icon.svg"
         }
       ]
@@ -41,7 +41,7 @@
         {
           "type": "tree",
           "id": "shulkerPanel.tasks",
-          "name": "Shulker Tasks",
+          "name": "%views.shulkerPanel.tasks.name%",
           "icon": "assets/icon.svg"
         }
       ]
@@ -49,187 +49,187 @@
     "commands": [
       {
         "command": "shulkerPanel.refreshTasks",
-        "title": "刷新任务列表",
+        "title": "%command.shulkerPanel.refreshTasks.title%",
         "category": "Shulker",
         "icon": "$(refresh)"
       },
       {
         "command": "shulkerPanel.runTask",
-        "title": "执行任务",
+        "title": "%command.shulkerPanel.runTask.title%",
         "category": "Shulker",
         "icon": "$(play)"
       },
       {
         "command": "shulkerPanel.runCommand",
-        "title": "执行命令",
+        "title": "%command.shulkerPanel.runCommand.title%",
         "category": "Shulker",
         "icon": "$(terminal)"
       },
       {
         "command": "shulkerPanel.openTaskFile",
-        "title": "打开任务文件",
+        "title": "%command.shulkerPanel.openTaskFile.title%",
         "category": "Shulker",
         "icon": "$(go-to-file)"
       },
       {
         "command": "shulkerPanel.copyCommand",
-        "title": "复制命令",
+        "title": "%command.shulkerPanel.copyCommand.title%",
         "category": "Shulker",
         "icon": "$(copy)"
       },
       {
         "command": "shulkerPanel.runQuickPick",
-        "title": "快速执行...",
+        "title": "%command.shulkerPanel.runQuickPick.title%",
         "category": "Shulker",
         "icon": "$(run-all)"
       },
       {
         "command": "shulkerPanel.build",
-        "title": "Build",
+        "title": "%command.shulkerPanel.build.title%",
         "category": "Shulker",
         "icon": "$(tools)"
       },
       {
         "command": "shulkerPanel.dev",
-        "title": "Dev",
+        "title": "%command.shulkerPanel.dev.title%",
         "category": "Shulker",
         "icon": "$(zap)"
       },
       {
         "command": "shulkerPanel.publish",
-        "title": "Publish",
+        "title": "%command.shulkerPanel.publish.title%",
         "category": "Shulker",
         "icon": "$(package)"
       },
       {
         "command": "shulkerPanel.run",
-        "title": "Run",
+        "title": "%command.shulkerPanel.run.title%",
         "category": "Shulker",
         "icon": "$(run-all)"
       },
       {
         "command": "shulkerPanel.projInfo",
-        "title": "项目信息",
+        "title": "%command.shulkerPanel.projInfo.title%",
         "category": "Shulker",
         "icon": "$(info)"
       },
       {
         "command": "shulkerPanel.projChname",
-        "title": "修改项目名称",
+        "title": "%command.shulkerPanel.projChname.title%",
         "category": "Shulker",
         "icon": "$(edit)"
       },
       {
         "command": "shulkerPanel.projChroot",
-        "title": "修改资源根目录",
+        "title": "%command.shulkerPanel.projChroot.title%",
         "category": "Shulker",
         "icon": "$(folder-opened)"
       },
       {
         "command": "shulkerPanel.projChout",
-        "title": "修改输出目录",
+        "title": "%command.shulkerPanel.projChout.title%",
         "category": "Shulker",
         "icon": "$(folder)"
       },
       {
         "command": "shulkerPanel.vermShow",
-        "title": "查看版本号",
+        "title": "%command.shulkerPanel.vermShow.title%",
         "category": "Shulker",
         "icon": "$(eye)"
       },
       {
         "command": "shulkerPanel.vermSmajor",
-        "title": "主版本号 +1",
+        "title": "%command.shulkerPanel.vermSmajor.title%",
         "category": "Shulker",
         "icon": "$(arrow-up)"
       },
       {
         "command": "shulkerPanel.vermSminor",
-        "title": "次版本号 +1",
+        "title": "%command.shulkerPanel.vermSminor.title%",
         "category": "Shulker",
         "icon": "$(arrow-up)"
       },
       {
         "command": "shulkerPanel.vermSfix",
-        "title": "修订号 +1",
+        "title": "%command.shulkerPanel.vermSfix.title%",
         "category": "Shulker",
         "icon": "$(arrow-up)"
       },
       {
         "command": "shulkerPanel.vermSet",
-        "title": "设置版本号",
+        "title": "%command.shulkerPanel.vermSet.title%",
         "category": "Shulker",
         "icon": "$(edit)"
       },
       {
         "command": "shulkerPanel.envList",
-        "title": "列出环境变量",
+        "title": "%command.shulkerPanel.envList.title%",
         "category": "Shulker",
         "icon": "$(list-unordered)"
       },
       {
         "command": "shulkerPanel.envGet",
-        "title": "获取环境变量",
+        "title": "%command.shulkerPanel.envGet.title%",
         "category": "Shulker",
         "icon": "$(search)"
       },
       {
         "command": "shulkerPanel.envSet",
-        "title": "设置环境变量",
+        "title": "%command.shulkerPanel.envSet.title%",
         "category": "Shulker",
         "icon": "$(edit)"
       },
       {
         "command": "shulkerPanel.envRemove",
-        "title": "删除环境变量",
+        "title": "%command.shulkerPanel.envRemove.title%",
         "category": "Shulker",
         "icon": "$(trash)"
       },
       {
         "command": "shulkerPanel.mrpSerialize",
-        "title": "序列化资源 (mrp s)",
+        "title": "%command.shulkerPanel.mrpSerialize.title%",
         "category": "Shulker",
         "icon": "$(sync)"
       },
       {
         "command": "shulkerPanel.mrpRestore",
-        "title": "还原资源 (mrp r)",
+        "title": "%command.shulkerPanel.mrpRestore.title%",
         "category": "Shulker",
         "icon": "$(cloud-download)"
       },
       {
         "command": "shulkerPanel.mrpExport",
-        "title": "导出索引 (mrp e)",
+        "title": "%command.shulkerPanel.mrpExport.title%",
         "category": "Shulker",
         "icon": "$(export)"
       },
       {
         "command": "shulkerPanel.mrpAdd",
-        "title": "添加资源 (mrp a)",
+        "title": "%command.shulkerPanel.mrpAdd.title%",
         "category": "Shulker",
         "icon": "$(add)"
       },
       {
         "command": "shulkerPanel.mrpUpdate",
-        "title": "更新资源 (mrp u)",
+        "title": "%command.shulkerPanel.mrpUpdate.title%",
         "category": "Shulker",
         "icon": "$(sync-ignored)"
       },
       {
         "command": "shulkerPanel.mrpLock",
-        "title": "锁定资源 (mrp lock)",
+        "title": "%command.shulkerPanel.mrpLock.title%",
         "category": "Shulker",
         "icon": "$(lock)"
       },
       {
         "command": "shulkerPanel.mrpUnlock",
-        "title": "解锁资源 (mrp unlock)",
+        "title": "%command.shulkerPanel.mrpUnlock.title%",
         "category": "Shulker",
         "icon": "$(unlock)"
       },
       {
         "command": "shulkerPanel.mrpClean",
-        "title": "清理缓存 (mrp clean)",
+        "title": "%command.shulkerPanel.mrpClean.title%",
         "category": "Shulker",
         "icon": "$(clear-all)"
       }
@@ -296,17 +296,17 @@
         "shulkerPanel.srdkPath": {
           "type": "string",
           "default": "",
-          "description": "srdk/srdk.exe 的自定义路径。留空则自动检测工作区根目录（Windows 使用 srdk.exe，Unix 使用 srdk）"
+          "description": "%configuration.shulkerPanel.srdkPath.description%"
         },
         "shulkerPanel.autoRefresh": {
           "type": "boolean",
           "default": true,
-          "description": "监听 .lvt 文件变化时自动刷新任务面板"
+          "description": "%configuration.shulkerPanel.autoRefresh.description%"
         },
         "shulkerPanel.showNonProjectWarning": {
           "type": "boolean",
           "default": true,
-          "description": "在非 ShulkerRDK 项目中显示提示信息"
+          "description": "%configuration.shulkerPanel.showNonProjectWarning.description%"
         }
       }
     }

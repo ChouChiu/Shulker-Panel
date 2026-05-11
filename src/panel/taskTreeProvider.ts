@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import type { ProjectInfo } from "../detector/projectDetector";
 import type { TaskDetector, TaskInfo } from "../detector/taskDetector";
+import { localize } from "../localize";
 import { CategoryTreeItem, CommandTreeItem, TaskTreeItem } from "./treeItem";
 
 /**
@@ -52,59 +53,59 @@ export class TaskTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem
       const taskItems: vscode.TreeItem[] = taskInfos.map(
         (t) => new TaskTreeItem(t.name, t.filePath, t.description, t.lineCount, t.isConfig),
       );
-      items.push(new CategoryTreeItem("任务 (Tasks)", "list-tree", taskItems));
+      items.push(new CategoryTreeItem(`${localize("Tasks")} (Tasks)`, "list-tree", taskItems));
     }
 
     // --- Build category ---
     const buildCommands: vscode.TreeItem[] = [
-      new CommandTreeItem("Build", "srdk build", "tools", false),
-      new CommandTreeItem("Dev", "srdk dev", "zap", false),
-      new CommandTreeItem("Publish", "srdk publish", "package", false),
-      new CommandTreeItem("Run", "srdk run", "run-all", false),
+      new CommandTreeItem(localize("Build"), "srdk build", "tools", false),
+      new CommandTreeItem(localize("Dev"), "srdk dev", "zap", false),
+      new CommandTreeItem(localize("Publish"), "srdk publish", "package", false),
+      new CommandTreeItem(localize("Run"), "srdk run", "run-all", false),
     ];
-    items.push(new CategoryTreeItem("构建 (Build)", "rocket", buildCommands));
+    items.push(new CategoryTreeItem(`${localize("Build")} (Build)`, "rocket", buildCommands));
 
     // --- Project category ---
     const projCommands: vscode.TreeItem[] = [
-      new CommandTreeItem("项目信息", "srdk c proj i", "info", false),
-      new CommandTreeItem("修改项目名", "srdk c proj chname", "edit", true),
-      new CommandTreeItem("修改资源根", "srdk c proj chroot", "folder-opened", true),
-      new CommandTreeItem("修改输出目录", "srdk c proj chout", "folder", true),
+      new CommandTreeItem(localize("Project Info"), "srdk c proj i", "info", false),
+      new CommandTreeItem(localize("Change Project Name"), "srdk c proj chname", "edit", true),
+      new CommandTreeItem(localize("Change Resource Root"), "srdk c proj chroot", "folder-opened", true),
+      new CommandTreeItem(localize("Change Output Dir"), "srdk c proj chout", "folder", true),
     ];
-    items.push(new CategoryTreeItem("项目 (Project)", "project", projCommands));
+    items.push(new CategoryTreeItem(`${localize("Project")} (Project)`, "project", projCommands));
 
     // --- Version category ---
     const vermCommands: vscode.TreeItem[] = [
-      new CommandTreeItem("查看版本", "srdk c verm show", "eye", false),
-      new CommandTreeItem("主版本 +1", "srdk c verm smajor", "arrow-up", false),
-      new CommandTreeItem("次版本 +1", "srdk c verm sminor", "arrow-up", false),
-      new CommandTreeItem("修订号 +1", "srdk c verm sfix", "arrow-up", false),
-      new CommandTreeItem("设置版本", "srdk c verm set", "edit", true),
+      new CommandTreeItem(localize("Show Version"), "srdk c verm show", "eye", false),
+      new CommandTreeItem(localize("Major +1"), "srdk c verm smajor", "arrow-up", false),
+      new CommandTreeItem(localize("Minor +1"), "srdk c verm sminor", "arrow-up", false),
+      new CommandTreeItem(localize("Patch +1"), "srdk c verm sfix", "arrow-up", false),
+      new CommandTreeItem(localize("Set Version"), "srdk c verm set", "edit", true),
     ];
-    items.push(new CategoryTreeItem("版本 (Version)", "versions", vermCommands));
+    items.push(new CategoryTreeItem(`${localize("Version")} (Version)`, "versions", vermCommands));
 
     // --- Environment category ---
     const envCommands: vscode.TreeItem[] = [
-      new CommandTreeItem("列出变量", "srdk c env list", "list-unordered", false),
-      new CommandTreeItem("获取变量", "srdk c env get", "search", true),
-      new CommandTreeItem("设置变量", "srdk c env set", "edit", true),
-      new CommandTreeItem("删除变量", "srdk c env remove", "trash", true),
+      new CommandTreeItem(localize("List Vars"), "srdk c env list", "list-unordered", false),
+      new CommandTreeItem(localize("Get Var"), "srdk c env get", "search", true),
+      new CommandTreeItem(localize("Set Var"), "srdk c env set", "edit", true),
+      new CommandTreeItem(localize("Remove Var"), "srdk c env remove", "trash", true),
     ];
-    items.push(new CategoryTreeItem("环境 (Env)", "server-environment", envCommands));
+    items.push(new CategoryTreeItem(`${localize("Env")} (Env)`, "server-environment", envCommands));
 
     // --- Modrinth category (MP only) ---
     if (projectInfo.type === "MP") {
       const mrpCommands: vscode.TreeItem[] = [
-        new CommandTreeItem("序列化 (mrp s)", "srdk c mrp s", "sync", false),
-        new CommandTreeItem("还原 (mrp r)", "srdk c mrp r", "cloud-download", false),
-        new CommandTreeItem("导出 (mrp e)", "srdk c mrp e", "export", false),
-        new CommandTreeItem("添加资源 (mrp a)", "srdk c mrp a", "add", true),
-        new CommandTreeItem("更新资源 (mrp u)", "srdk c mrp u", "sync-ignored", false),
-        new CommandTreeItem("锁定 (mrp lock)", "srdk c mrp lock", "lock", true),
-        new CommandTreeItem("解锁 (mrp unlock)", "srdk c mrp unlock", "unlock", true),
-        new CommandTreeItem("清理缓存 (mrp clean)", "srdk c mrp clean", "clear-all", false),
+        new CommandTreeItem(localize("Serialize (mrp s)"), "srdk c mrp s", "sync", false),
+        new CommandTreeItem(localize("Restore (mrp r)"), "srdk c mrp r", "cloud-download", false),
+        new CommandTreeItem(localize("Export (mrp e)"), "srdk c mrp e", "export", false),
+        new CommandTreeItem(localize("Add Resource (mrp a)"), "srdk c mrp a", "add", true),
+        new CommandTreeItem(localize("Update Resource (mrp u)"), "srdk c mrp u", "sync-ignored", false),
+        new CommandTreeItem(localize("Lock (mrp lock)"), "srdk c mrp lock", "lock", true),
+        new CommandTreeItem(localize("Unlock (mrp unlock)"), "srdk c mrp unlock", "unlock", true),
+        new CommandTreeItem(localize("Clean Cache (mrp clean)"), "srdk c mrp clean", "clear-all", false),
       ];
-      items.push(new CategoryTreeItem("Modrinth (MRP)", "package", mrpCommands));
+      items.push(new CategoryTreeItem(localize("Modrinth (MRP)"), "package", mrpCommands));
     }
 
     return items;

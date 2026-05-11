@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { localize } from "../localize";
 
 /**
  * Context values used for view/item/context menu when clauses.
@@ -24,25 +25,25 @@ export class TaskTreeItem extends vscode.TreeItem {
     if (isConfig) {
       this.label = `$(gear) ${taskName}`;
       this.description = `[${lineCount} lines] ${description}`;
-      this.tooltip = `配置文件: ${taskFilePath}\n点击打开文件`;
+      this.tooltip = localize("Config file: {0}\nClick to open", taskFilePath);
       this.iconPath = new vscode.ThemeIcon("settings-gear");
       this.contextValue = CONTEXT_CONFIG;
       this.command = {
         command: "shulkerPanel.openTaskFile",
-        title: "打开配置文件",
+        title: localize("Open Config File"),
         arguments: [this],
       };
     } else {
       this.label = `$(file-code) ${taskName}`;
       this.description = `[${lineCount} lines]`;
       this.tooltip = description
-        ? `任务: ${taskName}\n${description}\n${taskFilePath}`
-        : `任务: ${taskName}\n${taskFilePath}`;
+        ? localize("Task: {0}\n{1}\n{2}", taskName, description, taskFilePath)
+        : localize("Task: {0}\n{1}", taskName, taskFilePath);
       this.iconPath = this.getTaskIcon(taskName);
       this.contextValue = CONTEXT_TASK;
       this.command = {
         command: "shulkerPanel.runTask",
-        title: "执行任务",
+        title: localize("Run Task"),
         arguments: [this],
       };
     }
@@ -74,12 +75,12 @@ export class CommandTreeItem extends vscode.TreeItem {
     super(commandLabel, vscode.TreeItemCollapsibleState.None);
 
     this.description = commandString;
-    this.tooltip = `执行: ${commandString}`;
+    this.tooltip = localize("Execute: {0}", commandString);
     this.iconPath = new vscode.ThemeIcon(iconId);
     this.contextValue = requiresInput ? CONTEXT_COMMAND_INPUT : CONTEXT_COMMAND;
     this.command = {
       command: "shulkerPanel.runCommand",
-      title: "执行命令",
+      title: localize("Run Command"),
       arguments: [this],
     };
   }
