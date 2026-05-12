@@ -9,3 +9,5 @@ src/**
 .vscodeignore
 pnpm-lock.yaml
 .github/**
+**/AGENTS.md
+**/pnpm-workspace.yaml

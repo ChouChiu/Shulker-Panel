@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LiPolymer/Shulker-in-editor"
+    "url": "https://github.com/ChouChiu/Shulker-Panel"
   },
   "engines": {
     "vscode": "^1.118.0"
@@ -32,7 +32,7 @@
       "activitybar": [
         {
           "id": "shulker-panel",
-          "title": "%viewsContainers.activitybar.shulker-panel.title%",
+          "title": "Shulker Panel",
           "icon": "assets/icon.svg"
         }
       ]
@@ -42,7 +42,7 @@
         {
           "type": "tree",
           "id": "shulkerPanel.tasks",
-          "name": "%views.shulkerPanel.tasks.name%",
+          "name": "Shulker Tasks",
           "icon": "assets/icon.svg"
         }
       ]
@@ -50,187 +50,187 @@
     "commands": [
       {
         "command": "shulkerPanel.refreshTasks",
-        "title": "%command.shulkerPanel.refreshTasks.title%",
+        "title": "Refresh Task List",
         "category": "Shulker",
         "icon": "$(refresh)"
       },
       {
         "command": "shulkerPanel.runTask",
-        "title": "%command.shulkerPanel.runTask.title%",
+        "title": "Run Task",
         "category": "Shulker",
         "icon": "$(play)"
       },
       {
         "command": "shulkerPanel.runCommand",
-        "title": "%command.shulkerPanel.runCommand.title%",
+        "title": "Run Command",
         "category": "Shulker",
         "icon": "$(terminal)"
       },
       {
         "command": "shulkerPanel.openTaskFile",
-        "title": "%command.shulkerPanel.openTaskFile.title%",
+        "title": "Open Task File",
         "category": "Shulker",
         "icon": "$(go-to-file)"
       },
       {
         "command": "shulkerPanel.copyCommand",
-        "title": "%command.shulkerPanel.copyCommand.title%",
+        "title": "Copy Command",
         "category": "Shulker",
         "icon": "$(copy)"
       },
       {
         "command": "shulkerPanel.runQuickPick",
-        "title": "%command.shulkerPanel.runQuickPick.title%",
+        "title": "Quick Run...",
         "category": "Shulker",
         "icon": "$(run-all)"
       },
       {
         "command": "shulkerPanel.build",
-        "title": "%command.shulkerPanel.build.title%",
+        "title": "Build",
         "category": "Shulker",
         "icon": "$(tools)"
       },
       {
         "command": "shulkerPanel.dev",
-        "title": "%command.shulkerPanel.dev.title%",
+        "title": "Dev",
         "category": "Shulker",
         "icon": "$(zap)"
       },
       {
         "command": "shulkerPanel.publish",
-        "title": "%command.shulkerPanel.publish.title%",
+        "title": "Publish",
         "category": "Shulker",
         "icon": "$(package)"
       },
       {
         "command": "shulkerPanel.run",
-        "title": "%command.shulkerPanel.run.title%",
+        "title": "Run",
         "category": "Shulker",
         "icon": "$(run-all)"
       },
       {
         "command": "shulkerPanel.projInfo",
-        "title": "%command.shulkerPanel.projInfo.title%",
+        "title": "Project Info",
         "category": "Shulker",
         "icon": "$(info)"
       },
       {
         "command": "shulkerPanel.projChname",
-        "title": "%command.shulkerPanel.projChname.title%",
+        "title": "Change Project Name",
         "category": "Shulker",
         "icon": "$(edit)"
       },
       {
         "command": "shulkerPanel.projChroot",
-        "title": "%command.shulkerPanel.projChroot.title%",
+        "title": "Change Resource Root",
         "category": "Shulker",
         "icon": "$(folder-opened)"
       },
       {
         "command": "shulkerPanel.projChout",
-        "title": "%command.shulkerPanel.projChout.title%",
+        "title": "Change Output Dir",
         "category": "Shulker",
         "icon": "$(folder)"
       },
       {
         "command": "shulkerPanel.vermShow",
-        "title": "%command.shulkerPanel.vermShow.title%",
+        "title": "Show Version",
         "category": "Shulker",
         "icon": "$(eye)"
       },
       {
         "command": "shulkerPanel.vermSmajor",
-        "title": "%command.shulkerPanel.vermSmajor.title%",
+        "title": "Major +1",
         "category": "Shulker",
         "icon": "$(arrow-up)"
       },
       {
         "command": "shulkerPanel.vermSminor",
-        "title": "%command.shulkerPanel.vermSminor.title%",
+        "title": "Minor +1",
         "category": "Shulker",
         "icon": "$(arrow-up)"
       },
       {
         "command": "shulkerPanel.vermSfix",
-        "title": "%command.shulkerPanel.vermSfix.title%",
+        "title": "Patch +1",
         "category": "Shulker",
         "icon": "$(arrow-up)"
       },
       {
         "command": "shulkerPanel.vermSet",
-        "title": "%command.shulkerPanel.vermSet.title%",
+        "title": "Set Version",
         "category": "Shulker",
         "icon": "$(edit)"
       },
       {
         "command": "shulkerPanel.envList",
-        "title": "%command.shulkerPanel.envList.title%",
+        "title": "List Vars",
         "category": "Shulker",
         "icon": "$(list-unordered)"
       },
       {
         "command": "shulkerPanel.envGet",
-        "title": "%command.shulkerPanel.envGet.title%",
+        "title": "Get Var",
         "category": "Shulker",
         "icon": "$(search)"
       },
       {
         "command": "shulkerPanel.envSet",
-        "title": "%command.shulkerPanel.envSet.title%",
+        "title": "Set Var",
         "category": "Shulker",
         "icon": "$(edit)"
       },
       {
         "command": "shulkerPanel.envRemove",
-        "title": "%command.shulkerPanel.envRemove.title%",
+        "title": "Remove Var",
         "category": "Shulker",
         "icon": "$(trash)"
       },
       {
         "command": "shulkerPanel.mrpSerialize",
-        "title": "%command.shulkerPanel.mrpSerialize.title%",
+        "title": "Serialize (mrp s)",
         "category": "Shulker",
         "icon": "$(sync)"
       },
       {
         "command": "shulkerPanel.mrpRestore",
-        "title": "%command.shulkerPanel.mrpRestore.title%",
+        "title": "Restore (mrp r)",
         "category": "Shulker",
         "icon": "$(cloud-download)"
       },
       {
         "command": "shulkerPanel.mrpExport",
-        "title": "%command.shulkerPanel.mrpExport.title%",
+        "title": "Export (mrp e)",
         "category": "Shulker",
         "icon": "$(export)"
       },
       {
         "command": "shulkerPanel.mrpAdd",
-        "title": "%command.shulkerPanel.mrpAdd.title%",
+        "title": "Add Resource (mrp a)",
         "category": "Shulker",
         "icon": "$(add)"
       },
       {
         "command": "shulkerPanel.mrpUpdate",
-        "title": "%command.shulkerPanel.mrpUpdate.title%",
+        "title": "Update Resource (mrp u)",
         "category": "Shulker",
         "icon": "$(sync-ignored)"
       },
       {
         "command": "shulkerPanel.mrpLock",
-        "title": "%command.shulkerPanel.mrpLock.title%",
+        "title": "Lock (mrp lock)",
         "category": "Shulker",
         "icon": "$(lock)"
       },
       {
         "command": "shulkerPanel.mrpUnlock",
-        "title": "%command.shulkerPanel.mrpUnlock.title%",
+        "title": "Unlock (mrp unlock)",
         "category": "Shulker",
         "icon": "$(unlock)"
       },
       {
         "command": "shulkerPanel.mrpClean",
-        "title": "%command.shulkerPanel.mrpClean.title%",
+        "title": "Clean Cache (mrp clean)",
         "category": "Shulker",
         "icon": "$(clear-all)"
       }
@@ -297,17 +297,17 @@
         "shulkerPanel.srdkPath": {
           "type": "string",
           "default": "",
-          "description": "%configuration.shulkerPanel.srdkPath.description%"
+          "description": "Custom path for srdk / srdk.exe. Leave empty to auto-detect from workspace root (srdk.exe on Windows, srdk on Unix)."
         },
         "shulkerPanel.autoRefresh": {
           "type": "boolean",
           "default": true,
-          "description": "%configuration.shulkerPanel.autoRefresh.description%"
+          "description": "Automatically refresh the task panel when .lvt files change."
         },
         "shulkerPanel.showNonProjectWarning": {
           "type": "boolean",
           "default": true,
-          "description": "%configuration.shulkerPanel.showNonProjectWarning.description%"
+          "description": "Show a hint when no ShulkerRDK project is detected."
         }
       }
     }
