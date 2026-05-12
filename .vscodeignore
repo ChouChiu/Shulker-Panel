@@ -8,3 +8,4 @@ src/**
 .gitignore
 .vscodeignore
 pnpm-lock.yaml
+.github/**
