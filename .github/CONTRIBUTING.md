@@ -37,13 +37,13 @@ Please note that this project is released with a [Contributor Covenant Code of C
 
 ## Project Architecture
 
-| Module           | Path                                            | Responsibility                                                        |
-| ---------------- | ----------------------------------------------- | --------------------------------------------------------------------- |
-| **Extension**    | `src/extension.ts`                              | Activates the extension, registers commands, and refreshes the panel. |
-| **Detectors**    | `src/detector/`                                 | Detects ShulkerRDK projects and `.lvt` task files.                    |
-| **Executor**     | `src/executor/terminalManager.ts`               | Reuses the persistent terminal and runs `srdk`.                       |
-| **Panel**        | `src/panel/`                                    | Renders the sidebar tree and tree items.                              |
-| **Localization** | `src/localize.ts`, `l10n/`, `package.nls*.json` | Supplies English and Simplified Chinese strings.                      |
+| Module           | Path                              | Responsibility                                                        |
+| ---------------- | --------------------------------- | --------------------------------------------------------------------- |
+| **Extension**    | `src/extension.ts`                | Activates the extension, registers commands, and refreshes the panel. |
+| **Detectors**    | `src/detector/`                   | Detects ShulkerRDK projects and `.lvt` task files.                    |
+| **Executor**     | `src/executor/terminalManager.ts` | Reuses the persistent terminal and runs `srdk`.                       |
+| **Panel**        | `src/panel/`                      | Renders the sidebar tree and tree items.                              |
+| **Localization** | `src/localize.ts`, `l10n/`        | Supplies English and Simplified Chinese strings.                      |
 
 ## Development Workflow
 
@@ -97,7 +97,7 @@ The launch configuration runs `pnpm build` before opening the host.
 
 1. Register the command in `package.json`.
 2. Implement the handler in `src/extension.ts` or the relevant module.
-3. Add localized titles to `package.nls.json` and `package.nls.zh-cn.json`.
+3. Add localized titles to `l10n/bundle.l10n.json` and `l10n/bundle.l10n.zh-cn.json`.
 
 ### Adding a New Task Action
 
@@ -108,7 +108,7 @@ The launch configuration runs `pnpm build` before opening the host.
 ### Adding a New Setting
 
 1. Add the configuration entry in `package.json`.
-2. Add localized descriptions in the `package.nls` files.
+2. Add localized descriptions in the `l10n/` bundle files.
 3. Document the setting in the README configuration table.
 
 ## Project Structure
@@ -125,8 +125,6 @@ Shulker-in-editor/
 ├── assets/
 ├── l10n/
 ├── package.json
-├── package.nls.json
-├── package.nls.zh-cn.json
 ├── esbuild.config.mts
 ├── biome.json
 └── dist/                    # Build output

@@ -37,13 +37,13 @@
 
 ## 项目架构
 
-| 模块         | 路径                                            | 职责                                     |
-| ------------ | ----------------------------------------------- | ---------------------------------------- |
-| **扩展入口** | `src/extension.ts`                              | 激活扩展、注册命令并刷新任务面板。       |
-| **检测器**   | `src/detector/`                                 | 检测 ShulkerRDK 项目和 `.lvt` 任务文件。 |
-| **执行器**   | `src/executor/terminalManager.ts`               | 复用持久终端并执行 `srdk`。              |
-| **面板**     | `src/panel/`                                    | 渲染侧边栏树和树项。                     |
-| **本地化**   | `src/localize.ts`、`l10n/`、`package.nls*.json` | 提供英文和简体中文文本。                 |
+| 模块         | 路径                              | 职责                                     |
+| ------------ | --------------------------------- | ---------------------------------------- |
+| **扩展入口** | `src/extension.ts`                | 激活扩展、注册命令并刷新任务面板。       |
+| **检测器**   | `src/detector/`                   | 检测 ShulkerRDK 项目和 `.lvt` 任务文件。 |
+| **执行器**   | `src/executor/terminalManager.ts` | 复用持久终端并执行 `srdk`。              |
+| **面板**     | `src/panel/`                      | 渲染侧边栏树和树项。                     |
+| **本地化**   | `src/localize.ts`、`l10n/`        | 提供英文和简体中文文本。                 |
 
 ## 开发流程
 
@@ -97,7 +97,7 @@ pnpm package
 
 1. 在 `package.json` 中注册命令。
 2. 在 `src/extension.ts` 或相关模块中实现处理逻辑。
-3. 在 `package.nls.json` 和 `package.nls.zh-cn.json` 中添加本地化标题。
+3. 在 `l10n/bundle.l10n.json` 和 `l10n/bundle.l10n.zh-cn.json` 中添加本地化标题。
 
 ### 添加新的任务操作
 
@@ -108,7 +108,7 @@ pnpm package
 ### 添加新设置
 
 1. 在 `package.json` 中添加配置项。
-2. 在 `package.nls` 文件中添加本地化说明。
+2. 在 `l10n/` 的 bundle 文件中添加本地化说明。
 3. 在 README 的配置表中记录该设置。
 
 ## 项目结构
@@ -125,8 +125,6 @@ Shulker-in-editor/
 ├── assets/
 ├── l10n/
 ├── package.json
-├── package.nls.json
-├── package.nls.zh-cn.json
 ├── esbuild.config.mts
 ├── biome.json
 └── dist/                    # 构建产物

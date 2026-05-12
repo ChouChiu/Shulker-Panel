@@ -41,7 +41,7 @@ Three-layer design: Detection → Execution → UI Panel. Entry point: `src/exte
 - Resolve the binary with `TerminalManager.platformAwarePath()` so Windows uses `srdk.exe`.
 - Keep `contextValue` constants in `src/panel/treeItem.ts` in sync with `when` clauses in `package.json`.
 - User-facing labels, tooltips, and prompts are Simplified Chinese.
-- Keep command and setting titles/descriptions localized in `package.nls.json`, `package.nls.zh-cn.json`, and `l10n/`; update both language variants together.
+- Keep command and setting titles/descriptions localized in `l10n/`; update both `bundle.l10n.json` and `bundle.l10n.zh-cn.json` together.
 - Runtime strings that are not contributed metadata should go through `src/localize.ts`.
 - The extension only reads `workspace.workspaceFolders?.[0]`; multi-root workspaces are not supported.
 - `ProjectDetector.getInfo()` caches results; call `detect()` again after workspace or task-file changes.
