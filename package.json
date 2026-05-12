@@ -2,7 +2,7 @@
   "name": "shulker-panel",
   "displayName": "Shulker Panel",
   "description": "ShulkerRDK 项目任务面板与命令快捷操作| ShulkerRDK Project Task Panel and Command Shortcuts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "ChouChiu",
   "license": "MIT",
   "repository": {
@@ -324,7 +324,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.15",
-    "@types/node": "^25.6.2",
+    "@types/node": "^25.7.0",
     "@types/vscode": "^1.118.0",
     "@vscode/vsce": "^3.9.1",
     "esbuild": "^0.28.0",
