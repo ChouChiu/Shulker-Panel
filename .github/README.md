@@ -53,6 +53,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute.
 
 This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 
+## License
+
+Code: [MIT](LICENSE) · Icons under [`assets/`](assets/): [All Rights Reserved](LICENSE-ICONS) by [LiPolymer](https://github.com/LiPolymer).
+
 ## Acknowledgments
 
-Thanks to [LiPolymer](https://github.com/LiPolymer), the author of [ShulkerRDK](https://github.com/LiPolymer/ShulkerRDK) and [icon](../assets/icon.svg)
+Thanks to [LiPolymer](https://github.com/LiPolymer), the author of [ShulkerRDK](https://github.com/LiPolymer/ShulkerRDK) and [icon](../assets/icon.svg).

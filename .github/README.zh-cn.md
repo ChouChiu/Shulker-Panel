@@ -53,6 +53,10 @@ pnpm watch
 
 本项目遵循 [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.zh-cn.md)。
 
+## 许可证
+
+代码：[MIT](LICENSE) · `assets/` 下图标：[保留所有权利](LICENSE-ICONS)，作者 [LiPolymer](https://github.com/LiPolymer)。
+
 ## 致谢
 
-感谢 [ShulkerRDK](https://github.com/LiPolymer/ShulkerRDK) 以及 [图标](../assets/icon.svg) 的作者 [LiPolymer](https://github.com/LiPolymer)
+感谢 [ShulkerRDK](https://github.com/LiPolymer/ShulkerRDK) 以及[图标](../assets/icon.svg)的作者 [LiPolymer](https://github.com/LiPolymer)。
