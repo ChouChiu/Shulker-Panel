@@ -5,6 +5,7 @@ VS Code extension for ShulkerRDK task-panel and terminal actions. For user-facin
 - [中文 README](.github/README.zh-cn.md)
 - [English contributing guide](.github/CONTRIBUTING.md)
 - [中文 contributing guide](.github/CONTRIBUTING.zh-cn.md)
+- > READMEs under the root are SymbolicLink
 
 ## Build & Quality
 

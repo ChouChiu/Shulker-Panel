@@ -44,6 +44,7 @@ pnpm watch
 ## 相关项目
 
 - [ShulkerRDK](https://github.com/LiPolymer/ShulkerRDK) — 这个扩展的宿主项目。
+- [Levitate-Extension](https://github.com/ChouChiu/Levitate-Extension) — 推荐搭配的 Levitate DSL 扩展，提供语法高亮和语言服务器支持。
 
 ## 贡献
 
@@ -55,7 +56,7 @@ pnpm watch
 
 ## 许可证
 
-代码：[MIT](LICENSE) · `assets/` 下图标：[保留所有权利](LICENSE-ICONS)，作者 [LiPolymer](https://github.com/LiPolymer)。
+代码：[MIT](../LICENSE) · [`assets/`](../assets/) 下图标：[保留所有权利](../LICENSE-ICONS)，作者 [LiPolymer](https://github.com/LiPolymer)。
 
 ## 致谢
 

@@ -44,6 +44,7 @@ pnpm watch
 ## Related Projects
 
 - [ShulkerRDK](https://github.com/LiPolymer/ShulkerRDK) — Host project for this extension.
+- [Levitate-Extension](https://github.com/ChouChiu/Levitate-Extension) — Recommended companion for Levitate DSL; provides syntax highlighting and language server support.
 
 ## Contributing
 
@@ -55,7 +56,7 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
 
 ## License
 
-Code: [MIT](LICENSE) · Icons under [`assets/`](assets/): [All Rights Reserved](LICENSE-ICONS) by [LiPolymer](https://github.com/LiPolymer).
+Code: [MIT](../LICENSE) · Icons under [`assets/`](../assets/): [All Rights Reserved](../LICENSE-ICONS) by [LiPolymer](https://github.com/LiPolymer).
 
 ## Acknowledgments
 
