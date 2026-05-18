@@ -20,22 +20,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-         version: 10
+         bun-version: latest
             
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
          node-version: '24'
-         cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Package extension
-        run: pnpm package
+        run: bun run package
 
       - name: Get version from package.json
         id: version

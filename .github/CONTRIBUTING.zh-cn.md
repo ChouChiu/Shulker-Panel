@@ -9,7 +9,7 @@
 ## 环境要求
 
 - [Node.js](https://nodejs.org/)（推荐 LTS 版本）
-- [pnpm](https://pnpm.io/)（包管理器）
+- [Bun](https://bun.sh/)（包管理器 & 打包器）
 - [Visual Studio Code](https://code.visualstudio.com/)
 
 ## 快速开始
@@ -24,13 +24,13 @@
 2. 安装依赖：
 
 	```bash
-	pnpm install
+	bun install
 	```
 
 3. 构建项目：
 
 	```bash
-	pnpm build
+	bun run build
 	```
 
 4. 在 VS Code 中打开项目，按 `F5` 启动 Extension Development Host。
@@ -52,7 +52,7 @@
 构建扩展打包产物：
 
 ```bash
-pnpm build
+bun run build
 ```
 
 ### 监听模式
@@ -60,7 +60,7 @@ pnpm build
 文件变更时自动重新构建：
 
 ```bash
-pnpm watch
+bun run watch
 ```
 
 ### 代码检查与格式化
@@ -68,8 +68,8 @@ pnpm watch
 Biome 负责代码检查与格式化：
 
 ```bash
-pnpm lint
-pnpm format
+bun run lint
+bun run format
 ```
 
 ### 打包
@@ -77,7 +77,7 @@ pnpm format
 将扩展构建为 `.vsix` 文件：
 
 ```bash
-pnpm package
+bun run package
 ```
 
 ## 调试
@@ -89,7 +89,7 @@ pnpm package
 3. 按需要在 `src/` 中设置断点。
 4. 使用原始 VS Code 窗口中的 Debug Console 查看日志。
 
-启动配置会在打开宿主前先运行 `pnpm build`。
+启动配置会在打开宿主前先运行 `bun run build`。
 
 ## 添加功能
 
@@ -125,7 +125,6 @@ Shulker-in-editor/
 ├── assets/
 ├── l10n/
 ├── package.json
-├── esbuild.config.mts
 ├── biome.json
 └── dist/                    # 构建产物
 ```

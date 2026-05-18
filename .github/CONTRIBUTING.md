@@ -9,7 +9,7 @@ Please note that this project is released with a [Contributor Covenant Code of C
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (LTS recommended)
-- [pnpm](https://pnpm.io/) (package manager)
+- [Bun](https://bun.sh/) (package manager & bundler)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Getting Started
@@ -24,13 +24,13 @@ Please note that this project is released with a [Contributor Covenant Code of C
 2. Install dependencies:
 
 	```bash
-	pnpm install
+	bun install
 	```
 
 3. Build the project:
 
 	```bash
-	pnpm build
+	bun run build
 	```
 
 4. Open the project in VS Code and press `F5` to launch the Extension Development Host.
@@ -52,7 +52,7 @@ Please note that this project is released with a [Contributor Covenant Code of C
 Builds the extension bundle:
 
 ```bash
-pnpm build
+bun run build
 ```
 
 ### Watch Mode
@@ -60,7 +60,7 @@ pnpm build
 Rebuilds automatically on file changes:
 
 ```bash
-pnpm watch
+bun run watch
 ```
 
 ### Lint & Format
@@ -68,8 +68,8 @@ pnpm watch
 Biome handles linting and formatting:
 
 ```bash
-pnpm lint
-pnpm format
+bun run lint
+bun run format
 ```
 
 ### Package
@@ -77,7 +77,7 @@ pnpm format
 Build and package the extension into a `.vsix` file:
 
 ```bash
-pnpm package
+bun run package
 ```
 
 ## Debugging
@@ -89,7 +89,7 @@ pnpm package
 3. Set breakpoints in `src/` as needed.
 4. Use the Debug Console in the original VS Code window to inspect logs.
 
-The launch configuration runs `pnpm build` before opening the host.
+The launch configuration runs `bun run build` before opening the host.
 
 ## Adding Features
 
@@ -125,7 +125,6 @@ Shulker-in-editor/
 ├── assets/
 ├── l10n/
 ├── package.json
-├── esbuild.config.mts
 ├── biome.json
 └── dist/                    # Build output
 ```

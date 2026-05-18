@@ -13,25 +13,24 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v6
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
       with:
-        version: 10
+        bun-version: latest
 
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
         node-version: 24
-        cache: 'pnpm'
 
     - name: Install dependencies
-      run: pnpm install --no-frozen-lockfile
+      run: bun install
 
     - name: Build
-      run: pnpm build
+      run: bun run build
 
     - name: Package
-      run: pnpm package
+      run: bun run package
 
     - name: Upload artifact
       uses: actions/upload-artifact@v7

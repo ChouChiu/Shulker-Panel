@@ -19,7 +19,7 @@
 先从 [Release](https://github.com/ChouChiu/Shulker-Panel/releases/latest)下载或者构建 VSIX 包，再用 VS Code 安装：
 
 ```bash
-pnpm package
+bun run package
 code --install-extension shulker-panel-1.0.0.vsix
 # VS Code Insiders
 code-insiders --install-extension shulker-panel-1.0.0.vsix
@@ -28,9 +28,9 @@ code-insiders --install-extension shulker-panel-1.0.0.vsix
 ### 从源码安装
 
 ```bash
-pnpm install
-pnpm build
-pnpm watch
+bun install
+bun run build
+bun run watch
 ```
 
 ## 配置项

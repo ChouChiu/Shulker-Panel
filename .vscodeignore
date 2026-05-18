@@ -2,12 +2,10 @@
 **/*.ts
 **/tsconfig.json
 **/biome.json
-**/esbuild.config.mts
 node_modules/**
 src/**
 .gitignore
 .vscodeignore
-pnpm-lock.yaml
+bun.lock
 .github/**
 **/AGENTS.md
-**/pnpm-workspace.yaml

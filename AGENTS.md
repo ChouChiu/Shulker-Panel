@@ -11,18 +11,18 @@ VS Code extension for ShulkerRDK task-panel and terminal actions. For user-facin
 
 | Command         | Purpose                                               |
 | --------------- | ----------------------------------------------------- |
-| `pnpm build`    | Bundle TypeScript to `dist/extension.js` with esbuild |
-| `pnpm watch`    | Rebuild on file changes                               |
-| `pnpm lint`     | Run Biome checks for `src/`                           |
-| `pnpm lint:fix` | Run Biome checks with `--write` for `src/`            |
-| `pnpm format`   | Run Biome formatter with `--write` for `src/`         |
-| `pnpm package`  | Build and create a `.vsix` package                    |
-| `pnpm publish`  | Build and publish a `.vsix` package                   |
+| `bun run build`    | Bundle TypeScript to `dist/extension.js` with Bun |
+| `bun run watch`    | Rebuild on file changes                            |
+| `bun run lint`     | Run Biome checks for `src/`                        |
+| `bun run lint:fix` | Run Biome checks with `--write` for `src/`         |
+| `bun run format`   | Run Biome formatter with `--write` for `src/`      |
+| `bun run package`  | Build and create a `.vsix` package                 |
+| `bun run publish`  | Build and publish a `.vsix` package                |
 
 - Runtime target: VS Code `^1.118.0`, Node 18+
 - Formatting: Biome, 2-space indent, double quotes, trailing commas, 120-char line width. Do not add ESLint or Prettier configs.
 - TypeScript: strict mode, ES2022 target, CommonJS modules
-- Bundle: esbuild emits a single `dist/extension.js`; `vscode` stays external
+- Bundle: Bun emits a single `dist/extension.js`; `vscode` stays external
 
 ## Architecture
 
