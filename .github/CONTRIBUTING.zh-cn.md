@@ -42,7 +42,7 @@
 | 模块           | 路径                            | 职责                                                      |
 | -------------- | ------------------------------- | --------------------------------------------------------- |
 | **扩展入口**   | `src/extension.ts`              | 组装 features、注册命令、执行刷新流程                     |
-| **项目**       | `src/core/project/`             | 读取 `shulker/proj.json`、探测扩展、监听 `.lvt` 与 `proj.json` |
+| **项目**       | `src/core/project/`             | 读取 `shulker/proj.json`、探测扩展、监听 `.lvt`、`proj.json` 与扩展 |
 | **srdk**       | `src/core/srdk/`                | 解析启动器、复用终端、声明并执行 `SrdkAction`             |
 | **Feature API** | `src/core/feature.ts`          | `Feature` 接口与 `defineActionFeature` 辅助函数           |
 | **面板**       | `src/panel/`                    | 树提供器、树节点与 `contextValue` 常量                    |

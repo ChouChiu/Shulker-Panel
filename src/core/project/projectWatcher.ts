@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 
 /**
- * Watches shulker/proj.json and shulker/tasks/*.lvt and fires a debounced change event.
+ * Watches the shulker/ files that affect the panel and fires a debounced change event:
+ * proj.json, tasks/*.lvt, mrpack templates and installed extensions.
  */
 export class ProjectWatcher implements vscode.Disposable {
   private _onDidChange = new vscode.EventEmitter<void>();
@@ -20,7 +21,7 @@ export class ProjectWatcher implements vscode.Disposable {
     this.watchedDir = shulkerDir;
 
     const base = vscode.Uri.file(shulkerDir);
-    for (const glob of ["proj.json", "tasks/*.lvt"]) {
+    for (const glob of ["proj.json", "tasks/*.lvt", "mrpack*.template.json", "local/extensions/*", "extensions/*"]) {
       const watcher = vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(base, glob));
       watcher.onDidCreate(() => this.fire());
       watcher.onDidDelete(() => this.fire());

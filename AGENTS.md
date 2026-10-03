@@ -30,7 +30,7 @@ VS Code extension for ShulkerRDK task-panel and terminal actions. For user-facin
 src/extension.ts      — activate/deactivate, wires features, refresh flow
 src/core/config.ts    — `shulkerPanel.*` settings
 src/core/feature.ts   — `Feature` interface, `defineActionFeature`
-src/core/project/     — `proj.json` + extension detection, `.lvt` / `proj.json` watching
+src/core/project/     — `proj.json` + extension detection, `proj.json` / `.lvt` / extension watching
 src/core/srdk/        — launcher resolution, persistent terminal, `SrdkAction`
 src/panel/            — tree provider, tree items, `contextValue` constants
 src/features/<name>/  — one folder per feature (tasks, project, version, env, netfile, extensions, init, modrinth, prismarine, aseprite, magick, quickPick)
@@ -55,7 +55,7 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - The extension only reads `workspace.workspaceFolders?.[0]`; multi-root workspaces are not supported.
 - `ProjectDetector.getInfo()` caches results; go through `refresh()` after workspace or task-file changes.
 - The extension does not preflight-check the configured `srdk` binary.
-- `.lvt` and `proj.json` watching is debounced by 300ms; overlapping refreshes drop stale results via a generation counter, so `detect()` / `scan()` only cache through `setInfo()` / `setTasks()`.
+- Watching (`proj.json`, `tasks/*.lvt`, `mrpack*.template.json`, `local/extensions/*`, legacy `extensions/*`) is debounced by 300ms; overlapping refreshes drop stale results via a generation counter, so `detect()` / `scan()` only cache through `setInfo()` / `setTasks()`.
 - `TerminalManager.exec()` double-quotes any argument outside `[\p{L}\p{N}_.:/\\-]` and refuses arguments containing `"`, `` ` ``, `$`, `%` or line breaks.
 
 ## Editing Guidance

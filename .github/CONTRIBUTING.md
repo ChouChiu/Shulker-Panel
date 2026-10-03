@@ -42,7 +42,7 @@ The code is organized by feature: each feature owns its tree category, its srdk 
 | Module           | Path                                | Responsibility                                                               |
 | ---------------- | ----------------------------------- | ---------------------------------------------------------------------------- |
 | **Entry**        | `src/extension.ts`                  | Wires features, registers commands and runs the refresh flow                 |
-| **Project**      | `src/core/project/`                 | Reads `shulker/proj.json`, detects extensions, watches `.lvt` and `proj.json` |
+| **Project**      | `src/core/project/`                 | Reads `shulker/proj.json`, detects extensions, watches `.lvt`, `proj.json` and extensions |
 | **srdk**         | `src/core/srdk/`                    | Resolves the launcher, reuses the terminal, declares and runs `SrdkAction`s  |
 | **Feature API**  | `src/core/feature.ts`               | `Feature` interface and `defineActionFeature` helper                         |
 | **Panel**        | `src/panel/`                        | Tree provider, tree items and `contextValue` constants                       |

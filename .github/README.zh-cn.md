@@ -12,7 +12,7 @@
 - **按扩展显示分组** — 项目声明或安装了对应扩展时才显示 Modrinth（`mrp`）、Prismarine（`pfm`）、Aseprite（`ase`）、ResourceMagick（`png2psd`）
 - **快速执行** — 一个选择器汇总任务与所有可用命令
 - **持久终端** — 复用名为 `ShulkerRDK` 的终端，调用项目启动器（Unix 为 `./srdk`，Windows 为 `.\srdk.bat` 或旧版 `.\srdk.exe`）
-- **自动刷新** — 监听 `.lvt` 文件与 `shulker/proj.json`
+- **自动刷新** — 监听 `.lvt` 文件、`shulker/proj.json`、mrpack 模板与已安装扩展
 - **工作区信任** — srdk 命令只在受信任的工作区执行，受限模式下会提示管理工作区信任
 - **本地化** — 英文与简体中文
 
