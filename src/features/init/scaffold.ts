@@ -60,7 +60,15 @@ export async function scaffoldProject(options: ScaffoldOptions): Promise<Scaffol
   await makeExecutable(vscode.Uri.joinPath(root, "srdk"));
 
   const shulkerDir = vscode.Uri.joinPath(root, "shulker");
-  await writeJson(vscode.Uri.joinPath(shulkerDir, "proj.json"), {
+  const writeNew = async (relative: string, value: unknown) => {
+    const uri = vscode.Uri.joinPath(shulkerDir, relative);
+    if (await exists(uri)) {
+      kept.push(`shulker/${relative}`);
+    } else {
+      await writeJson(uri, value);
+    }
+  };
+  await writeNew("proj.json", {
     ProjectName: options.projectName,
     Version: "0.0.0",
     RootPath: options.rootPath,
@@ -69,7 +77,7 @@ export async function scaffoldProject(options: ScaffoldOptions): Promise<Scaffol
     Extensions: options.extensions.map((asm) => extensionIdentifier(releaseSource, asm)),
   });
   // Local settings skip SRDK's interactive color test; the VS Code terminal renders ANSI colors
-  await writeJson(vscode.Uri.joinPath(shulkerDir, "local", "shulker.json"), { TerminalMode: "modern" });
+  await writeNew("local/shulker.json", { TerminalMode: "modern" });
 
   const buildTask = vscode.Uri.joinPath(shulkerDir, "tasks", "build.lvt");
   if (!(await exists(buildTask))) {

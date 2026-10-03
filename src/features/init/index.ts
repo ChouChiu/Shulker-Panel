@@ -29,6 +29,8 @@ async function initProject(ctx: FeatureContext): Promise<void> {
     vscode.window.showWarningMessage(localize("Open a folder before initializing a ShulkerRDK project"));
     return;
   }
+  // The cached info may predate activation or a proj.json created outside VS Code
+  await ctx.refresh();
   if (ctx.project().isValid) {
     vscode.window.showWarningMessage(localize("This workspace is already a ShulkerRDK project"));
     return;
