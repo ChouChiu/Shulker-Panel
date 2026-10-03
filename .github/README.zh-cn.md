@@ -6,7 +6,7 @@
 
 ## 功能
 
-- **项目初始化** — 在没有 `shulker/proj.json` 的文件夹中下载上游启动器，生成带所选扩展的 `proj.json`、示例 `build.lvt`、资源根目录与 `.gitignore` 条目，然后运行 `srdk c proj i` 拉取二进制
+- **项目初始化** — 在没有 `shulker/proj.json` 的文件夹中，从面板欢迎页下载上游启动器，生成带所选扩展的 `proj.json`、示例 `build.lvt`、带基础教程的 README、资源根目录与 `.gitignore` 条目，然后运行 `srdk c proj i` 拉取二进制
 - **任务面板** — 列出 `shulker/tasks/*.lvt`，标出 `build` / `dev` / `publish` / `run` 别名，`_` 开头的子任务折叠到单独分组
 - **核心命令** — `proj`、`verm`、`env`、`netfile`、`ext` 与 `help c`，必填与可选参数通过输入框填写
 - **按扩展显示分组** — 项目声明或安装了对应扩展时才显示 Modrinth（`mrp`）、Prismarine（`pfm`）、Aseprite（`ase`）、ResourceMagick（`png2psd`）

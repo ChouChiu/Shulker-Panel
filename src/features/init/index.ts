@@ -65,11 +65,12 @@ async function initProject(ctx: FeatureContext): Promise<void> {
           projectName: projectName.trim(),
           rootPath: rootPath.trim() || "./src/",
           extensions: picks.map((pick) => pick.asm),
+          readmeLang: vscode.env.language.toLowerCase().startsWith("zh") ? "zh" : "en",
         }),
     );
 
-    if (result.keptLaunchers.length > 0) {
-      vscode.window.showInformationMessage(localize("Kept existing launchers: {0}", result.keptLaunchers.join(", ")));
+    if (result.kept.length > 0) {
+      vscode.window.showInformationMessage(localize("Kept existing files: {0}", result.kept.join(", ")));
     }
     await ctx.refresh();
     // First run downloads the srdk binary and declared extensions, then prints the project info

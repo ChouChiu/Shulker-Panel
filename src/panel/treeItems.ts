@@ -14,9 +14,14 @@ export const CONTEXT_COMMAND_INPUT = "commandItemWithInput";
 export const CONTEXT_CATEGORY = "category";
 
 /**
- * Task names that ShulkerRDK also exposes as `srdk <name>` aliases.
+ * Task names with contributed shortcut commands (shulkerPanel.build etc.).
  */
 export const ALIASED_TASKS = new Set(["build", "dev", "publish", "run"]);
+
+/**
+ * Task names ShulkerRDK accepts directly as startup actions, e.g. `srdk build`.
+ */
+const STARTUP_ALIASES = new Set(["build", "publish", "run"]);
 
 /**
  * A TreeItem representing a scanned .lvt task file.
@@ -31,7 +36,7 @@ export class TaskTreeItem extends vscode.TreeItem {
     this.taskName = task.name;
     this.taskFilePath = task.filePath;
 
-    const alias = ALIASED_TASKS.has(task.name) ? `srdk ${task.name}` : "";
+    const alias = STARTUP_ALIASES.has(task.name) ? `srdk ${task.name}` : "";
     this.description = [alias, task.description].filter((part) => part.length > 0).join(" · ");
     this.tooltip = [
       localize("Task: {0}", task.name),

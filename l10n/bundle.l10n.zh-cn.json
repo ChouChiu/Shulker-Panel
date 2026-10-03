@@ -1,4 +1,5 @@
 {
+  "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "[初始化 ShulkerRDK 项目](command:shulkerPanel.initProject)",
   "Add Resource (mrp a)": "添加资源 (mrp a)",
   "Aseprite": "Aseprite",
   "Automatically refresh the task panel when .lvt files or proj.json change.": "监听 .lvt 文件或 proj.json 变化时自动刷新任务面板",
@@ -48,7 +49,7 @@
   "Get Var": "获取变量",
   "Initialize ShulkerRDK Project": "初始化 ShulkerRDK 项目",
   "Initializing ShulkerRDK project...": "正在初始化 ShulkerRDK 项目...",
-  "Kept existing launchers: {0}": "已保留现有启动器: {0}",
+  "Kept existing files: {0}": "已保留现有文件: {0}",
   "List Commands (help c)": "列出指令 (help c)",
   "List Extensions": "列出扩展",
   "List Tasks": "列出任务",
@@ -64,8 +65,9 @@
   "Modrinth (MRP)": "Modrinth (MRP)",
   "Modrinth hosted files and .mrpack export": "Modrinth 托管文件与 .mrpack 导出",
   "Net Files": "网络文件",
-  "No ShulkerRDK project in this folder.\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "当前文件夹不是 ShulkerRDK 项目\n[初始化 ShulkerRDK 项目](command:shulkerPanel.initProject)",
+  "No ShulkerRDK project in this folder\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "当前文件夹不是 ShulkerRDK 项目\n[初始化 ShulkerRDK 项目](command:shulkerPanel.initProject)",
   "Open a folder before initializing a ShulkerRDK project": "请先打开一个文件夹再初始化 ShulkerRDK 项目",
+  "Open a folder to use or initialize a ShulkerRDK project\n[Open Folder](command:workbench.action.files.openFolder)": "打开文件夹以使用或初始化 ShulkerRDK 项目\n[打开文件夹](command:workbench.action.files.openFolder)",
   "Open Task File": "打开任务文件",
   "Patch +1": "修订号 +1",
   "PNG / PSD conversion and PBR extraction": "PNG / PSD 互转与 PBR 贴图提取",
@@ -112,6 +114,5 @@
   "Version": "版本",
   "{0} (optional, leave empty to skip)": "{0}（可选，留空跳过）",
   "{0} lines": "{0} 行",
-  "{0}: {1} @{2}": "{0}: {1} @{2}",
-  "⚠ No ShulkerRDK project detected": "⚠ 未检测到 ShulkerRDK 项目"
+  "{0}: {1} @{2}": "{0}: {1} @{2}"
 }

@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import * as vscode from "vscode";
+import { renderReadme } from "./readme";
 
 /**
  * Upstream launcher scripts. The `main` branch carries the release pin that new projects should use;
@@ -27,13 +28,15 @@ export interface ScaffoldOptions {
   rootPath: string;
   /** Extension assembly names, e.g. ShulkerRDK.Modrinth */
   extensions: string[];
+  /** Language of the generated README */
+  readmeLang: "zh" | "en";
 }
 
 export interface ScaffoldResult {
   /** Release pin read from the launcher, e.g. gl:LiPolymer/ShulkerRDK@B0.20 */
   releaseSource: string;
-  /** Launchers that already existed and were kept */
-  keptLaunchers: string[];
+  /** Existing files that were kept instead of overwritten */
+  kept: string[];
 }
 
 /**
@@ -45,11 +48,11 @@ export async function scaffoldProject(options: ScaffoldOptions): Promise<Scaffol
   const scripts = await Promise.all(LAUNCHERS.map(async (name) => [name, await download(name)] as const));
   const releaseSource = parseReleaseSource(new TextDecoder().decode(scripts[0][1]));
 
-  const keptLaunchers: string[] = [];
+  const kept: string[] = [];
   for (const [name, content] of scripts) {
     const uri = vscode.Uri.joinPath(root, name);
     if (await exists(uri)) {
-      keptLaunchers.push(name);
+      kept.push(name);
       continue;
     }
     await vscode.workspace.fs.writeFile(uri, content);
@@ -73,10 +76,24 @@ export async function scaffoldProject(options: ScaffoldOptions): Promise<Scaffol
     await vscode.workspace.fs.writeFile(buildTask, new TextEncoder().encode(SAMPLE_BUILD_TASK));
   }
 
+  const readme = vscode.Uri.joinPath(root, "README.md");
+  if (await exists(readme)) {
+    kept.push("README.md");
+  } else {
+    const content = renderReadme({
+      projectName: options.projectName,
+      rootPath: options.rootPath,
+      extensions: options.extensions,
+      releaseSource,
+      lang: options.readmeLang,
+    });
+    await vscode.workspace.fs.writeFile(readme, new TextEncoder().encode(content));
+  }
+
   await vscode.workspace.fs.createDirectory(vscode.Uri.joinPath(root, options.rootPath));
   await appendGitignore(vscode.Uri.joinPath(root, ".gitignore"));
 
-  return { releaseSource, keptLaunchers };
+  return { releaseSource, kept };
 }
 
 async function download(name: string): Promise<Uint8Array> {

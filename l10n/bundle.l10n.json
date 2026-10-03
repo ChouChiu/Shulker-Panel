@@ -1,4 +1,5 @@
 {
+  "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
   "Add Resource (mrp a)": "Add Resource (mrp a)",
   "Aseprite": "Aseprite",
   "Automatically refresh the task panel when .lvt files or proj.json change.": "Automatically refresh the task panel when .lvt files or proj.json change.",
@@ -48,7 +49,7 @@
   "Get Var": "Get Var",
   "Initialize ShulkerRDK Project": "Initialize ShulkerRDK Project",
   "Initializing ShulkerRDK project...": "Initializing ShulkerRDK project...",
-  "Kept existing launchers: {0}": "Kept existing launchers: {0}",
+  "Kept existing files: {0}": "Kept existing files: {0}",
   "List Commands (help c)": "List Commands (help c)",
   "List Extensions": "List Extensions",
   "List Tasks": "List Tasks",
@@ -64,8 +65,9 @@
   "Modrinth (MRP)": "Modrinth (MRP)",
   "Modrinth hosted files and .mrpack export": "Modrinth hosted files and .mrpack export",
   "Net Files": "Net Files",
-  "No ShulkerRDK project in this folder.\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "No ShulkerRDK project in this folder.\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
+  "No ShulkerRDK project in this folder\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "No ShulkerRDK project in this folder\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
   "Open a folder before initializing a ShulkerRDK project": "Open a folder before initializing a ShulkerRDK project",
+  "Open a folder to use or initialize a ShulkerRDK project\n[Open Folder](command:workbench.action.files.openFolder)": "Open a folder to use or initialize a ShulkerRDK project\n[Open Folder](command:workbench.action.files.openFolder)",
   "Open Task File": "Open Task File",
   "Patch +1": "Patch +1",
   "PNG / PSD conversion and PBR extraction": "PNG / PSD conversion and PBR extraction",
@@ -112,6 +114,5 @@
   "Version": "Version",
   "{0} (optional, leave empty to skip)": "{0} (optional, leave empty to skip)",
   "{0} lines": "{0} lines",
-  "{0}: {1} @{2}": "{0}: {1} @{2}",
-  "⚠ No ShulkerRDK project detected": "⚠ No ShulkerRDK project detected"
+  "{0}: {1} @{2}": "{0}: {1} @{2}"
 }

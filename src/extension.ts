@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { CONFIG_SECTION, getAutoRefresh, getShowWarning } from "./core/config";
+import { CONFIG_SECTION, getAutoRefresh } from "./core/config";
 import { type FeatureContext, isFeatureEnabled } from "./core/feature";
 import { localize } from "./core/localize";
 import { EXT_MODRINTH, ProjectDetector, type ProjectInfo } from "./core/project/projectDetector";
@@ -104,5 +104,6 @@ function projectMessage(info: ProjectInfo): string | undefined {
   if (info.isValid) {
     return localize("ShulkerRDK project detected");
   }
-  return getShowWarning() ? localize("⚠ No ShulkerRDK project detected") : undefined;
+  // VS Code hides the welcome view (with the init button) while a message is set
+  return undefined;
 }

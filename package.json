@@ -56,8 +56,18 @@
     "viewsWelcome": [
       {
         "view": "shulkerPanel.tasks",
-        "contents": "No ShulkerRDK project in this folder.\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
-        "when": "workspaceFolderCount > 0 && !shulkerPanel.isProject"
+        "contents": "No ShulkerRDK project in this folder\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
+        "when": "workspaceFolderCount > 0 && !shulkerPanel.isProject && config.shulkerPanel.showNonProjectWarning"
+      },
+      {
+        "view": "shulkerPanel.tasks",
+        "contents": "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
+        "when": "workspaceFolderCount > 0 && !shulkerPanel.isProject && !config.shulkerPanel.showNonProjectWarning"
+      },
+      {
+        "view": "shulkerPanel.tasks",
+        "contents": "Open a folder to use or initialize a ShulkerRDK project\n[Open Folder](command:workbench.action.files.openFolder)",
+        "when": "workspaceFolderCount == 0"
       }
     ],
     "commands": [
@@ -264,11 +274,6 @@
         {
           "command": "shulkerPanel.runQuickPick",
           "when": "view == shulkerPanel.tasks",
-          "group": "navigation"
-        },
-        {
-          "command": "shulkerPanel.initProject",
-          "when": "view == shulkerPanel.tasks && workspaceFolderCount > 0 && !shulkerPanel.isProject",
           "group": "navigation"
         }
       ],

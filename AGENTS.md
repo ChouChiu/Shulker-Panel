@@ -44,7 +44,8 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - Launcher resolution lives in `src/core/srdk/launcher.ts`: `shulkerPanel.srdkPath`, then root `srdk` (Unix) or `srdk.bat` / legacy `srdk.exe` (Windows). `TerminalManager.platformAwarePath()` turns bare names into `./srdk` / `.\srdk.bat`.
 - Commands are always `<launcher> c <args...>`; the `build` / `dev` / `publish` / `run` aliases map to `task <name>` and only run when the `.lvt` exists.
 - A project is valid when `shulker/proj.json` exists. Extensions come from `proj.json` `Extensions`, `shulker/local/extensions/<Asm>/` and legacy `shulker/extensions/<Asm>.dll`.
-- Project init (`src/features/init/`) downloads launchers from upstream `main` (release tags may pin older binaries) and derives extension identifiers from the launcher's `RELEASE_SOURCE_ID`.
+- Project init (`src/features/init/`) downloads launchers from upstream `main` (release tags may pin older binaries) and derives extension identifiers from the launcher's `RELEASE_SOURCE_ID`. The generated README follows `vscode.env.language` (zh / en).
+- Leave `treeView.message` unset for non-projects: VS Code hides `viewsWelcome` (the init entry) while a message is set.
 - `_`-prefixed tasks are sub-tasks: shown under a collapsed group, opened instead of run.
 - `TerminalManager.exec()` refuses to send commands in an untrusted workspace (Restricted Mode terminals never run them); keep `capabilities.untrustedWorkspaces` as `limited`.
 - Keep `contextValue` constants in `src/panel/treeItems.ts` in sync with `when` clauses in `package.json`.
