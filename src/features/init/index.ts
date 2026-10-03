@@ -1,14 +1,7 @@
 import * as vscode from "vscode";
 import type { Feature, FeatureContext } from "../../core/feature";
 import { localize } from "../../core/localize";
-import {
-  EXT_ASEPRITE,
-  EXT_FFMPEG,
-  EXT_MAGICK,
-  EXT_MODRINTH,
-  EXT_PRISMARINE,
-  EXT_RRT,
-} from "../../core/project/projectDetector";
+import { KNOWN_EXTENSIONS } from "../../core/project/extensionSource";
 import { scaffoldProject } from "./scaffold";
 
 interface ExtensionPick extends vscode.QuickPickItem {
@@ -85,27 +78,10 @@ async function initProject(ctx: FeatureContext): Promise<void> {
 }
 
 function extensionPicks(): ExtensionPick[] {
-  return [
-    {
-      asm: EXT_MODRINTH,
-      label: "ModrinthPSK",
-      description: "mrp",
-      detail: localize("Modrinth hosted files and .mrpack export"),
-    },
-    { asm: EXT_PRISMARINE, label: "Prismarine", description: "pfm", detail: localize("Prismarine file management") },
-    { asm: EXT_ASEPRITE, label: "Aseprite", description: "ase", detail: localize("Convert .aseprite files to PNG") },
-    {
-      asm: EXT_MAGICK,
-      label: "ResourceMagick",
-      description: "png2psd / psdcvt / pbrex",
-      detail: localize("PNG / PSD conversion and PBR extraction"),
-    },
-    {
-      asm: EXT_RRT,
-      label: "ShulkerRRT",
-      description: "rrt / pw",
-      detail: localize("Live reload with the ShulkerRRT mod"),
-    },
-    { asm: EXT_FFMPEG, label: "FFmpeg", description: "a2ogg", detail: localize("Convert audio to OGG") },
-  ];
+  return KNOWN_EXTENSIONS.map((ext) => ({
+    asm: ext.asm,
+    label: ext.label,
+    description: ext.commands,
+    detail: ext.detail(),
+  }));
 }

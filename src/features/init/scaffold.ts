@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import * as vscode from "vscode";
+import { extensionIdentifier, parseReleaseSource } from "../../core/project/extensionSource";
 import { renderReadme } from "./readme";
 
 /**
@@ -47,6 +48,9 @@ export async function scaffoldProject(options: ScaffoldOptions): Promise<Scaffol
 
   const scripts = await Promise.all(LAUNCHERS.map(async (name) => [name, await download(name)] as const));
   const releaseSource = parseReleaseSource(new TextDecoder().decode(scripts[0][1]));
+  if (!releaseSource) {
+    throw new Error("RELEASE_SOURCE_ID not found in srdk launcher");
+  }
 
   const kept: string[] = [];
   for (const [name, content] of scripts) {
@@ -110,25 +114,6 @@ async function download(name: string): Promise<Uint8Array> {
     throw new Error(`${name}: HTTP ${response.status}`);
   }
   return new Uint8Array(await response.arrayBuffer());
-}
-
-/**
- * Reads `RELEASE_SOURCE_ID='gl:LiPolymer/ShulkerRDK@B0.20'` from the Unix launcher.
- */
-function parseReleaseSource(script: string): string {
-  const match = /RELEASE_SOURCE_ID='([^:']+:[^@']+@[^']+)'/.exec(script);
-  if (!match) {
-    throw new Error("RELEASE_SOURCE_ID not found in srdk launcher");
-  }
-  return match[1];
-}
-
-/**
- * Builds `platform:repo#Asm@tag` from the launcher's `platform:repo@tag`.
- */
-function extensionIdentifier(releaseSource: string, asm: string): string {
-  const at = releaseSource.lastIndexOf("@");
-  return `${releaseSource.slice(0, at)}#${asm}${releaseSource.slice(at)}`;
 }
 
 async function appendGitignore(uri: vscode.Uri): Promise<void> {
