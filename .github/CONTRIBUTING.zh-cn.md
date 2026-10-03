@@ -47,7 +47,7 @@
 | **Feature API** | `src/core/feature.ts`          | `Feature` 接口与 `defineActionFeature` 辅助函数           |
 | **面板**       | `src/panel/`                    | 树提供器、树节点与 `contextValue` 常量                    |
 | **功能**       | `src/features/<name>/`          | 任务、项目、版本、环境、netfile、Modrinth、Prismarine 等  |
-| **本地化**     | `src/core/localize.ts`、`l10n/` | 英文与简体中文文本                                        |
+| **本地化**     | `src/core/localize.ts`、`l10n/`、`package.nls*.json` | 运行时文本放 `l10n/`，贡献项的标题与说明放 `package.nls*.json` |
 
 ## 开发流程
 
@@ -101,7 +101,7 @@ bun run package
 
 1. 在 `src/features/<name>/index.ts` 对应 feature 中添加 `SrdkAction`（`label`、`icon`、`args`、可选 `inputs`）
 2. 只有需要出现在命令面板时才设置 `commandId`，并在 `package.json` 中贡献该命令
-3. 同时在 `l10n/bundle.l10n.json` 和 `l10n/bundle.l10n.zh-cn.json` 中添加本地化文本
+3. 运行时文本同时加到 `l10n/bundle.l10n.json` 和 `l10n/bundle.l10n.zh-cn.json`；贡献的命令标题在 `package.json` 中写成 `%command.<id>.title%`，并同时加到 `package.nls.json` 和 `package.nls.zh-cn.json`
 
 ### 添加 feature
 
@@ -113,7 +113,7 @@ bun run package
 ### 添加新设置
 
 1. 在 `package.json` 中添加配置项。
-2. 在 `l10n/` 的 bundle 文件中添加本地化说明。
+2. 说明写成 `%config.<name>.description%`，并加到 `package.nls.json` 和 `package.nls.zh-cn.json`
 3. 在 README 的配置表中记录该设置。
 
 ## 项目结构
@@ -145,6 +145,8 @@ Shulker-in-editor/
 ├── assets/
 ├── l10n/
 ├── package.json
+├── package.nls.json
+├── package.nls.zh-cn.json
 ├── biome.json
 └── dist/                    # 构建产物
 ```
