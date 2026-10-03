@@ -37,13 +37,17 @@
 
 ## 项目架构
 
-| 模块         | 路径                              | 职责                                     |
-| ------------ | --------------------------------- | ---------------------------------------- |
-| **扩展入口** | `src/extension.ts`                | 激活扩展、注册命令并刷新任务面板。       |
-| **检测器**   | `src/detector/`                   | 检测 ShulkerRDK 项目和 `.lvt` 任务文件。 |
-| **执行器**   | `src/executor/terminalManager.ts` | 复用持久终端并执行 `srdk`。              |
-| **面板**     | `src/panel/`                      | 渲染侧边栏树和树项。                     |
-| **本地化**   | `src/localize.ts`、`l10n/`        | 提供英文和简体中文文本。                 |
+代码按功能组织：每个 feature 自带树分组、srdk 动作以及所依赖的 ShulkerRDK 扩展
+
+| 模块           | 路径                            | 职责                                                      |
+| -------------- | ------------------------------- | --------------------------------------------------------- |
+| **扩展入口**   | `src/extension.ts`              | 组装 features、注册命令、执行刷新流程                     |
+| **项目**       | `src/core/project/`             | 读取 `shulker/proj.json`、探测扩展、监听 `.lvt` 与 `proj.json` |
+| **srdk**       | `src/core/srdk/`                | 解析启动器、复用终端、声明并执行 `SrdkAction`             |
+| **Feature API** | `src/core/feature.ts`          | `Feature` 接口与 `defineActionFeature` 辅助函数           |
+| **面板**       | `src/panel/`                    | 树提供器、树节点与 `contextValue` 常量                    |
+| **功能**       | `src/features/<name>/`          | 任务、项目、版本、环境、netfile、Modrinth、Prismarine 等  |
+| **本地化**     | `src/core/localize.ts`、`l10n/` | 英文与简体中文文本                                        |
 
 ## 开发流程
 
@@ -93,17 +97,18 @@ bun run package
 
 ## 添加功能
 
-### 添加新命令
+### 添加 srdk 命令
 
-1. 在 `package.json` 中注册命令。
-2. 在 `src/extension.ts` 或相关模块中实现处理逻辑。
-3. 在 `l10n/bundle.l10n.json` 和 `l10n/bundle.l10n.zh-cn.json` 中添加本地化标题。
+1. 在 `src/features/<name>/index.ts` 对应 feature 中添加 `SrdkAction`（`label`、`icon`、`args`、可选 `inputs`）
+2. 只有需要出现在命令面板时才设置 `commandId`，并在 `package.json` 中贡献该命令
+3. 同时在 `l10n/bundle.l10n.json` 和 `l10n/bundle.l10n.zh-cn.json` 中添加本地化文本
 
-### 添加新的任务操作
+### 添加 feature
 
-1. 在 `src/detector/` 或 `src/panel/` 中更新检测器或树提供器。
-2. 如果需要让用户直接访问，将该操作加入命令注册列表。
-3. 如果行为对用户可见，更新 README。
+1. 新建 `src/features/<name>/index.ts`，用 `defineActionFeature` 定义，需要自定义树或命令时直接实现 `Feature`
+2. 命令来自外置扩展时，把 `requires` 设为扩展程序集名（如 `ShulkerRDK.Modrinth`）
+3. 按显示顺序加入 `src/features/index.ts`
+4. 如果行为对用户可见，更新 README
 
 ### 添加新设置
 
@@ -117,11 +122,25 @@ bun run package
 Shulker-in-editor/
 ├── src/
 │   ├── extension.ts
-│   ├── config.ts
-│   ├── localize.ts
-│   ├── detector/
-│   ├── executor/
-│   └── panel/
+│   ├── core/
+│   │   ├── config.ts
+│   │   ├── localize.ts
+│   │   ├── feature.ts
+│   │   ├── project/
+│   │   └── srdk/
+│   ├── panel/
+│   └── features/
+│       ├── tasks/
+│       ├── project/
+│       ├── version/
+│       ├── env/
+│       ├── netfile/
+│       ├── extensions/
+│       ├── modrinth/
+│       ├── prismarine/
+│       ├── aseprite/
+│       ├── magick/
+│       └── quickPick/
 ├── assets/
 ├── l10n/
 ├── package.json

@@ -6,11 +6,13 @@ VS Code extension for ShulkerRDK projects, providing a sidebar task panel, comma
 
 ## Features
 
-- **Task Panel** — Displays `.lvt` tasks in a sidebar tree and refreshes automatically when the workspace changes.
-- **Command Shortcuts** — Runs tasks, copies commands, opens task files, and launches quick-pick execution.
-- **Persistent Terminal** — Reuses the `ShulkerRDK` terminal for `srdk` commands.
-- **Project Utilities** — Covers project info, name/root/output changes, version management, environment variables, and MRP actions.
-- **Localization** — Ships English and Simplified Chinese text through VS Code localization files.
+- **Task Panel** — Lists `shulker/tasks/*.lvt`, marks the `build` / `dev` / `publish` / `run` aliases, and folds `_`-prefixed sub-tasks into their own group
+- **Core Commands** — `proj`, `verm`, `env`, `netfile`, `ext` and `help c`, with input boxes for required and optional parameters
+- **Extension-aware Groups** — Shows Modrinth (`mrp`), Prismarine (`pfm`), Aseprite (`ase`) and ResourceMagick (`png2psd`) only when the project declares or installs that extension
+- **Quick Run** — One picker over tasks and every available command
+- **Persistent Terminal** — Reuses the `ShulkerRDK` terminal and runs the project launcher (`./srdk` on Unix, `.\srdk.bat` or legacy `.\srdk.exe` on Windows)
+- **Auto Refresh** — Watches `.lvt` files and `shulker/proj.json`
+- **Localization** — English and Simplified Chinese
 
 ## Installation
 
@@ -37,8 +39,8 @@ bun run watch
 
 | Setting                              | Default | Description                                                    |
 | ------------------------------------ | ------- | -------------------------------------------------------------- |
-| `shulkerPanel.srdkPath`              | ``      | Custom path to `srdk` or `srdk.exe`.                           |
-| `shulkerPanel.autoRefresh`           | `true`  | Refresh the panel automatically when `.lvt` files change.      |
+| `shulkerPanel.srdkPath`              | ``      | Custom launcher path; empty means auto-detect from the root    |
+| `shulkerPanel.autoRefresh`           | `true`  | Refresh when `.lvt` files or `proj.json` change                |
 | `shulkerPanel.showNonProjectWarning` | `true`  | Show a warning when the workspace is not a ShulkerRDK project. |
 
 ## Related Projects

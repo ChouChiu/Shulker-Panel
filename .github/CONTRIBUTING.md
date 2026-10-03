@@ -37,13 +37,17 @@ Please note that this project is released with a [Contributor Covenant Code of C
 
 ## Project Architecture
 
-| Module           | Path                              | Responsibility                                                        |
-| ---------------- | --------------------------------- | --------------------------------------------------------------------- |
-| **Extension**    | `src/extension.ts`                | Activates the extension, registers commands, and refreshes the panel. |
-| **Detectors**    | `src/detector/`                   | Detects ShulkerRDK projects and `.lvt` task files.                    |
-| **Executor**     | `src/executor/terminalManager.ts` | Reuses the persistent terminal and runs `srdk`.                       |
-| **Panel**        | `src/panel/`                      | Renders the sidebar tree and tree items.                              |
-| **Localization** | `src/localize.ts`, `l10n/`        | Supplies English and Simplified Chinese strings.                      |
+The code is organized by feature: each feature owns its tree category, its srdk actions and the extension it depends on
+
+| Module           | Path                                | Responsibility                                                               |
+| ---------------- | ----------------------------------- | ---------------------------------------------------------------------------- |
+| **Entry**        | `src/extension.ts`                  | Wires features, registers commands and runs the refresh flow                 |
+| **Project**      | `src/core/project/`                 | Reads `shulker/proj.json`, detects extensions, watches `.lvt` and `proj.json` |
+| **srdk**         | `src/core/srdk/`                    | Resolves the launcher, reuses the terminal, declares and runs `SrdkAction`s  |
+| **Feature API**  | `src/core/feature.ts`               | `Feature` interface and `defineActionFeature` helper                         |
+| **Panel**        | `src/panel/`                        | Tree provider, tree items and `contextValue` constants                       |
+| **Features**     | `src/features/<name>/`              | Tasks, project, version, env, netfile, Modrinth, Prismarine and more         |
+| **Localization** | `src/core/localize.ts`, `l10n/`     | English and Simplified Chinese strings                                       |
 
 ## Development Workflow
 
@@ -93,17 +97,18 @@ The launch configuration runs `bun run build` before opening the host.
 
 ## Adding Features
 
-### Adding a New Command
+### Adding a srdk Command
 
-1. Register the command in `package.json`.
-2. Implement the handler in `src/extension.ts` or the relevant module.
-3. Add localized titles to `l10n/bundle.l10n.json` and `l10n/bundle.l10n.zh-cn.json`.
+1. Add a `SrdkAction` (`label`, `icon`, `args`, optional `inputs`) to the matching feature in `src/features/<name>/index.ts`
+2. Set `commandId` only if the action should also appear in the command palette, then contribute it in `package.json`
+3. Add localized strings to both `l10n/bundle.l10n.json` and `l10n/bundle.l10n.zh-cn.json`
 
-### Adding a New Task Action
+### Adding a Feature
 
-1. Update the detector or tree provider in `src/detector/` or `src/panel/`.
-2. Add the action to the command registration list if it needs user access.
-3. Update the README if the action changes user-facing behavior.
+1. Create `src/features/<name>/index.ts` with `defineActionFeature`, or implement `Feature` directly for custom trees and commands
+2. Set `requires` to the extension assembly name (e.g. `ShulkerRDK.Modrinth`) if the commands come from an external extension
+3. Add the feature to `src/features/index.ts` in display order
+4. Update the README if the feature changes user-facing behavior
 
 ### Adding a New Setting
 
@@ -117,11 +122,25 @@ The launch configuration runs `bun run build` before opening the host.
 Shulker-in-editor/
 ├── src/
 │   ├── extension.ts
-│   ├── config.ts
-│   ├── localize.ts
-│   ├── detector/
-│   ├── executor/
-│   └── panel/
+│   ├── core/
+│   │   ├── config.ts
+│   │   ├── localize.ts
+│   │   ├── feature.ts
+│   │   ├── project/
+│   │   └── srdk/
+│   ├── panel/
+│   └── features/
+│       ├── tasks/
+│       ├── project/
+│       ├── version/
+│       ├── env/
+│       ├── netfile/
+│       ├── extensions/
+│       ├── modrinth/
+│       ├── prismarine/
+│       ├── aseprite/
+│       ├── magick/
+│       └── quickPick/
 ├── assets/
 ├── l10n/
 ├── package.json

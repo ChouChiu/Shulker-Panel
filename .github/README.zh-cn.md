@@ -6,11 +6,13 @@
 
 ## 功能
 
-- **任务面板** — 在侧边栏中显示 `.lvt` 任务，并在工作区变化时自动刷新。
-- **命令快捷操作** — 执行任务、复制命令、打开任务文件，并提供快速执行入口。
-- **持久终端** — 复用名为 `ShulkerRDK` 的终端执行 `srdk` 命令。
-- **项目工具** — 支持项目信息、名称/资源根目录/输出目录、版本号、环境变量以及 MRP 相关操作。
-- **本地化** — 通过 VS Code 本地化文件提供英文和简体中文文本。
+- **任务面板** — 列出 `shulker/tasks/*.lvt`，标出 `build` / `dev` / `publish` / `run` 别名，`_` 开头的子任务折叠到单独分组
+- **核心命令** — `proj`、`verm`、`env`、`netfile`、`ext` 与 `help c`，必填与可选参数通过输入框填写
+- **按扩展显示分组** — 项目声明或安装了对应扩展时才显示 Modrinth（`mrp`）、Prismarine（`pfm`）、Aseprite（`ase`）、ResourceMagick（`png2psd`）
+- **快速执行** — 一个选择器汇总任务与所有可用命令
+- **持久终端** — 复用名为 `ShulkerRDK` 的终端，调用项目启动器（Unix 为 `./srdk`，Windows 为 `.\srdk.bat` 或旧版 `.\srdk.exe`）
+- **自动刷新** — 监听 `.lvt` 文件与 `shulker/proj.json`
+- **本地化** — 英文与简体中文
 
 ## 安装
 
@@ -37,8 +39,8 @@ bun run watch
 
 | 设置                                 | 默认值 | 说明                               |
 | ------------------------------------ | ------ | ---------------------------------- |
-| `shulkerPanel.srdkPath`              | ``     | `srdk` / `srdk.exe` 的自定义路径。 |
-| `shulkerPanel.autoRefresh`           | `true` | 当 `.lvt` 文件变化时自动刷新面板。 |
+| `shulkerPanel.srdkPath`              | ``     | 启动器自定义路径，留空则从根目录自动检测 |
+| `shulkerPanel.autoRefresh`           | `true` | `.lvt` 或 `proj.json` 变化时自动刷新面板 |
 | `shulkerPanel.showNonProjectWarning` | `true` | 在不是 ShulkerRDK 项目时显示警告。 |
 
 ## 相关项目

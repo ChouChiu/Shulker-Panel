@@ -27,30 +27,35 @@ VS Code extension for ShulkerRDK task-panel and terminal actions. For user-facin
 ## Architecture
 
 ```
-src/extension.ts      — activate/deactivate, command registration, refresh flow
-src/config.ts         — `shulkerPanel.*` settings
-src/detector/         — project detection and `.lvt` file watching
-src/executor/         — persistent ShulkerRDK terminal and `srdk` execution
-src/panel/            — tree provider and tree item models
+src/extension.ts      — activate/deactivate, wires features, refresh flow
+src/core/config.ts    — `shulkerPanel.*` settings
+src/core/feature.ts   — `Feature` interface, `defineActionFeature`
+src/core/project/     — `proj.json` + extension detection, `.lvt` / `proj.json` watching
+src/core/srdk/        — launcher resolution, persistent terminal, `SrdkAction`
+src/panel/            — tree provider, tree items, `contextValue` constants
+src/features/<name>/  — one folder per feature (tasks, project, version, env, netfile, extensions, modrinth, prismarine, aseprite, magick, quickPick)
 ```
 
-Three-layer design: Detection → Execution → UI Panel. Entry point: `src/extension.ts`. Build output: `dist/extension.js`.
+Feature-driven: each feature declares its tree category, `SrdkAction`s and optional `requires` (extension assembly name such as `ShulkerRDK.Modrinth`). Entry point: `src/extension.ts`. Build output: `dist/extension.js`.
 
 ## Codebase Rules
 
-- Use `TerminalManager` for every `srdk` command. Never spawn ad-hoc terminals.
-- Resolve the binary with `TerminalManager.platformAwarePath()` so Windows uses `srdk.exe`.
-- Keep `contextValue` constants in `src/panel/treeItem.ts` in sync with `when` clauses in `package.json`.
+- Declare srdk commands as `SrdkAction` in the owning feature and run them through `runAction` / `TerminalManager`. Never spawn ad-hoc terminals or parse command strings.
+- Launcher resolution lives in `src/core/srdk/launcher.ts`: `shulkerPanel.srdkPath`, then root `srdk` (Unix) or `srdk.bat` / legacy `srdk.exe` (Windows). `TerminalManager.platformAwarePath()` turns bare names into `./srdk` / `.\srdk.bat`.
+- Commands are always `<launcher> c <args...>`; the `build` / `dev` / `publish` / `run` aliases map to `task <name>` and only run when the `.lvt` exists.
+- A project is valid when `shulker/proj.json` exists. Extensions come from `proj.json` `Extensions`, `shulker/local/extensions/<Asm>/` and legacy `shulker/extensions/<Asm>.dll`.
+- `_`-prefixed tasks are sub-tasks: shown under a collapsed group, opened instead of run.
+- Keep `contextValue` constants in `src/panel/treeItems.ts` in sync with `when` clauses in `package.json`.
 - User-facing labels, tooltips, and prompts are Simplified Chinese.
 - Keep command and setting titles/descriptions localized in `l10n/`; update both `bundle.l10n.json` and `bundle.l10n.zh-cn.json` together.
-- Runtime strings that are not contributed metadata should go through `src/localize.ts`.
+- Runtime strings that are not contributed metadata should go through `src/core/localize.ts`.
 - The extension only reads `workspace.workspaceFolders?.[0]`; multi-root workspaces are not supported.
 - `ProjectDetector.getInfo()` caches results; call `detect()` again after workspace or task-file changes.
 - The extension does not preflight-check the configured `srdk` binary.
-- `.lvt` file watching is debounced by 300ms.
+- `.lvt` and `proj.json` watching is debounced by 300ms.
 
 ## Editing Guidance
 
 - Prefer small, local edits that preserve existing command ids and tree-item context values.
 - When user-facing behavior changes, update the bilingual docs instead of duplicating instructions here.
-- If a change touches command wiring, update `package.json`, `src/extension.ts`, and `src/panel/treeItem.ts` together.
+- If a change touches command wiring, update `package.json`, the owning feature, and `src/panel/treeItems.ts` together.
