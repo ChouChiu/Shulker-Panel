@@ -3,10 +3,27 @@ import { localize } from "../localize";
 import { platformAwarePath } from "./launcher";
 
 /**
- * Quotes an argument when it contains whitespace, matching how ShulkerRDK splits parameters.
+ * Characters that stay special inside double quotes in bash, fish, PowerShell or cmd, so they cannot be quoted safely.
+ */
+const UNQUOTABLE = /["`$%\r\n]/;
+
+/**
+ * Characters no supported shell treats specially, passed through unquoted; anything else is double-quoted.
+ */
+const PLAIN = /^[\p{L}\p{N}_.:/\\-]+$/u;
+
+/**
+ * Returns whether an argument can be sent to the terminal shell without being interpreted by it.
+ */
+export function isSafeArg(arg: string): boolean {
+  return !UNQUOTABLE.test(arg);
+}
+
+/**
+ * Double-quotes an argument unless it only contains plain characters, so shell operators reach srdk as text.
  */
 function quoteArg(arg: string): string {
-  return /\s/.test(arg) ? `"${arg}"` : arg;
+  return PLAIN.test(arg) ? arg : `"${arg}"`;
 }
 
 /**
@@ -58,6 +75,14 @@ export class TerminalManager {
             vscode.commands.executeCommand("workbench.trust.manage");
           }
         });
+      return;
+    }
+
+    const unsafe = args.find((arg) => !isSafeArg(arg));
+    if (unsafe !== undefined) {
+      vscode.window.showErrorMessage(
+        localize("Argument contains characters that cannot be passed safely: {0}", unsafe),
+      );
       return;
     }
 

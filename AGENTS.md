@@ -56,6 +56,7 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - `ProjectDetector.getInfo()` caches results; call `detect()` again after workspace or task-file changes.
 - The extension does not preflight-check the configured `srdk` binary.
 - `.lvt` and `proj.json` watching is debounced by 300ms.
+- `TerminalManager.exec()` double-quotes any argument outside `[\p{L}\p{N}_.:/\\-]` and refuses arguments containing `"`, `` ` ``, `$`, `%` or line breaks.
 
 ## Editing Guidance
 

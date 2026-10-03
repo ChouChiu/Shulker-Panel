@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { localize } from "../localize";
-import { formatCommand, type TerminalManager } from "./terminalManager";
+import { formatCommand, isSafeArg, type TerminalManager } from "./terminalManager";
 
 /**
  * A positional parameter collected through an input box before running an action.
@@ -46,6 +46,8 @@ export async function runAction(action: SrdkAction, terminal: TerminalManager): 
       prompt: input.optional ? localize("{0} (optional, leave empty to skip)", input.prompt) : input.prompt,
       placeHolder: input.placeholder,
       ignoreFocusOut: true,
+      validateInput: (text) =>
+        isSafeArg(text) ? undefined : localize("Quotes, $, %, ` and line breaks are not allowed"),
     });
 
     if (value === undefined) {

@@ -1,6 +1,7 @@
 {
   "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
   "Add Resource (mrp a)": "Add Resource (mrp a)",
+  "Argument contains characters that cannot be passed safely: {0}": "Argument contains characters that cannot be passed safely: {0}",
   "Aseprite": "Aseprite",
   "Automatically refresh the task panel when .lvt files or proj.json change.": "Automatically refresh the task panel when .lvt files or proj.json change.",
   "Build": "Build",
@@ -78,6 +79,7 @@
   "Project name cannot be empty": "Project name cannot be empty",
   "Publish": "Publish",
   "Quick Run...": "Quick Run...",
+  "Quotes, $, %, ` and line breaks are not allowed": "Quotes, $, %, ` and line breaks are not allowed",
   "Refresh Task List": "Refresh Task List",
   "Remove Var": "Remove Var",
   "ResourceMagick": "ResourceMagick",

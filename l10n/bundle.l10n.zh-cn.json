@@ -1,6 +1,7 @@
 {
   "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)": "[初始化 ShulkerRDK 项目](command:shulkerPanel.initProject)",
   "Add Resource (mrp a)": "添加资源 (mrp a)",
+  "Argument contains characters that cannot be passed safely: {0}": "参数包含无法安全传递的字符: {0}",
   "Aseprite": "Aseprite",
   "Automatically refresh the task panel when .lvt files or proj.json change.": "监听 .lvt 文件或 proj.json 变化时自动刷新任务面板",
   "Build": "构建",
@@ -78,6 +79,7 @@
   "Project name cannot be empty": "项目名不能为空",
   "Publish": "Publish",
   "Quick Run...": "快速执行...",
+  "Quotes, $, %, ` and line breaks are not allowed": "不能包含引号、$、%、` 或换行",
   "Refresh Task List": "刷新任务列表",
   "Remove Var": "删除变量",
   "ResourceMagick": "ResourceMagick",
