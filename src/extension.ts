@@ -52,8 +52,13 @@ export function activate(context: vscode.ExtensionContext): void {
       if (action.commandId) {
         context.subscriptions.push(
           vscode.commands.registerCommand(action.commandId, () => {
-            if (isFeatureEnabled(feature, ctx.project())) {
+            const project = ctx.project();
+            if (isFeatureEnabled(feature, project)) {
               runAction(action, terminalManager);
+            } else if (!project.isValid) {
+              vscode.window.showWarningMessage(localize("Current workspace is not a ShulkerRDK project"));
+            } else if (feature.requires) {
+              vscode.window.showWarningMessage(localize("This command needs the {0} extension", feature.requires));
             }
           }),
         );

@@ -106,6 +106,7 @@
   "Task — {0}": "任务 — {0}",
   "Task: {0}": "任务: {0}",
   "Tasks": "任务",
+  "This command needs the {0} extension": "该命令需要 {0} 扩展",
   "This workspace is already a ShulkerRDK project": "当前工作区已经是 ShulkerRDK 项目",
   "Unlock (mrp unlock)": "解锁 (mrp unlock)",
   "Unlock (pfm ul)": "解锁 (pfm ul)",

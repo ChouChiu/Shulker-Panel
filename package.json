@@ -337,36 +337,108 @@
           "when": "false"
         },
         {
+          "command": "shulkerPanel.build",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.dev",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.publish",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.run",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.runQuickPick",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.projInfo",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.projChname",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.projChroot",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.projChout",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.vermShow",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.vermSmajor",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.vermSminor",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.vermSfix",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.vermSet",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.envList",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.envGet",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.envSet",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.envRemove",
+          "when": "shulkerPanel.isProject"
+        },
+        {
           "command": "shulkerPanel.mrpSerialize",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpRestore",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpExport",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpAdd",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpUpdate",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpLock",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpUnlock",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.mrpClean",
-          "when": "shulkerPanel.hasModrinth"
+          "when": "shulkerPanel.isProject && shulkerPanel.hasModrinth"
         },
         {
           "command": "shulkerPanel.initProject",
