@@ -45,6 +45,7 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - Commands are always `<launcher> c <args...>`; the `build` / `dev` / `publish` / `run` aliases map to `task <name>` and only run when the `.lvt` exists.
 - A project is valid when `shulker/proj.json` exists. Extensions come from `proj.json` `Extensions`, `shulker/local/extensions/<Asm>/` and legacy `shulker/extensions/<Asm>.dll`.
 - `_`-prefixed tasks are sub-tasks: shown under a collapsed group, opened instead of run.
+- `TerminalManager.exec()` refuses to send commands in an untrusted workspace (Restricted Mode terminals never run them); keep `capabilities.untrustedWorkspaces` as `limited`.
 - Keep `contextValue` constants in `src/panel/treeItems.ts` in sync with `when` clauses in `package.json`.
 - User-facing labels, tooltips, and prompts are Simplified Chinese.
 - Keep command and setting titles/descriptions localized in `l10n/`; update both `bundle.l10n.json` and `bundle.l10n.zh-cn.json` together.

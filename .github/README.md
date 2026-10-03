@@ -12,6 +12,7 @@ VS Code extension for ShulkerRDK projects, providing a sidebar task panel, comma
 - **Quick Run** — One picker over tasks and every available command
 - **Persistent Terminal** — Reuses the `ShulkerRDK` terminal and runs the project launcher (`./srdk` on Unix, `.\srdk.bat` or legacy `.\srdk.exe` on Windows)
 - **Auto Refresh** — Watches `.lvt` files and `shulker/proj.json`
+- **Workspace Trust** — srdk commands only run in a trusted workspace; in Restricted Mode the panel offers to manage trust instead
 - **Localization** — English and Simplified Chinese
 
 ## Installation

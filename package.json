@@ -25,6 +25,12 @@
   "activationEvents": [
     "workspaceContains:shulker/proj.json"
   ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "srdk commands run project scripts, so they are blocked until the workspace is trusted."
+    }
+  },
   "main": "./dist/extension.js",
   "l10n": "./l10n",
   "contributes": {

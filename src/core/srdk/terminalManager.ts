@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { localize } from "../localize";
 import { platformAwarePath } from "./launcher";
 
 /**
@@ -47,6 +48,19 @@ export class TerminalManager {
    * @param args - Command arguments (e.g., ["task", "build"])
    */
   exec(args: string[]): void {
+    // Restricted Mode terminals do not run sent text, so ask for trust instead of failing silently
+    if (!vscode.workspace.isTrusted) {
+      const manage = localize("Manage Workspace Trust");
+      vscode.window
+        .showWarningMessage(localize("srdk commands only run in a trusted workspace"), manage)
+        .then((choice) => {
+          if (choice === manage) {
+            vscode.commands.executeCommand("workbench.trust.manage");
+          }
+        });
+      return;
+    }
+
     const fullCommand = [this.launcher, "c", ...args.map(quoteArg)].join(" ");
 
     // Create or reuse terminal; srdk resolves project paths relative to the workspace root
