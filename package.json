@@ -53,7 +53,20 @@
         }
       ]
     },
+    "viewsWelcome": [
+      {
+        "view": "shulkerPanel.tasks",
+        "contents": "No ShulkerRDK project in this folder.\n[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
+        "when": "workspaceFolderCount > 0 && !shulkerPanel.isProject"
+      }
+    ],
     "commands": [
+      {
+        "command": "shulkerPanel.initProject",
+        "title": "Initialize ShulkerRDK Project",
+        "category": "Shulker",
+        "icon": "$(new-folder)"
+      },
       {
         "command": "shulkerPanel.refreshTasks",
         "title": "Refresh Task List",
@@ -252,6 +265,11 @@
           "command": "shulkerPanel.runQuickPick",
           "when": "view == shulkerPanel.tasks",
           "group": "navigation"
+        },
+        {
+          "command": "shulkerPanel.initProject",
+          "when": "view == shulkerPanel.tasks && workspaceFolderCount > 0 && !shulkerPanel.isProject",
+          "group": "navigation"
         }
       ],
       "view/item/context": [
@@ -344,6 +362,10 @@
         {
           "command": "shulkerPanel.mrpClean",
           "when": "shulkerPanel.hasModrinth"
+        },
+        {
+          "command": "shulkerPanel.initProject",
+          "when": "workspaceFolderCount > 0 && !shulkerPanel.isProject"
         }
       ]
     },

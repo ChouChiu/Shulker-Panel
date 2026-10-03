@@ -14,6 +14,8 @@ export const EXT_MODRINTH = "ShulkerRDK.Modrinth";
 export const EXT_PRISMARINE = "ShulkerRDK.Prismarine";
 export const EXT_ASEPRITE = "ShulkerRDK.Aseprite";
 export const EXT_MAGICK = "ShulkerRDK.ResourceMagick";
+export const EXT_RRT = "ShulkerRDK.RRT";
+export const EXT_FFMPEG = "ShulkerRDK.FFmpeg";
 
 /**
  * Information about a detected ShulkerRDK project.

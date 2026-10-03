@@ -33,7 +33,7 @@ src/core/feature.ts   — `Feature` interface, `defineActionFeature`
 src/core/project/     — `proj.json` + extension detection, `.lvt` / `proj.json` watching
 src/core/srdk/        — launcher resolution, persistent terminal, `SrdkAction`
 src/panel/            — tree provider, tree items, `contextValue` constants
-src/features/<name>/  — one folder per feature (tasks, project, version, env, netfile, extensions, modrinth, prismarine, aseprite, magick, quickPick)
+src/features/<name>/  — one folder per feature (tasks, project, version, env, netfile, extensions, init, modrinth, prismarine, aseprite, magick, quickPick)
 ```
 
 Feature-driven: each feature declares its tree category, `SrdkAction`s and optional `requires` (extension assembly name such as `ShulkerRDK.Modrinth`). Entry point: `src/extension.ts`. Build output: `dist/extension.js`.
@@ -44,6 +44,7 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - Launcher resolution lives in `src/core/srdk/launcher.ts`: `shulkerPanel.srdkPath`, then root `srdk` (Unix) or `srdk.bat` / legacy `srdk.exe` (Windows). `TerminalManager.platformAwarePath()` turns bare names into `./srdk` / `.\srdk.bat`.
 - Commands are always `<launcher> c <args...>`; the `build` / `dev` / `publish` / `run` aliases map to `task <name>` and only run when the `.lvt` exists.
 - A project is valid when `shulker/proj.json` exists. Extensions come from `proj.json` `Extensions`, `shulker/local/extensions/<Asm>/` and legacy `shulker/extensions/<Asm>.dll`.
+- Project init (`src/features/init/`) downloads launchers from upstream `main` (release tags may pin older binaries) and derives extension identifiers from the launcher's `RELEASE_SOURCE_ID`.
 - `_`-prefixed tasks are sub-tasks: shown under a collapsed group, opened instead of run.
 - `TerminalManager.exec()` refuses to send commands in an untrusted workspace (Restricted Mode terminals never run them); keep `capabilities.untrustedWorkspaces` as `limited`.
 - Keep `contextValue` constants in `src/panel/treeItems.ts` in sync with `when` clauses in `package.json`.

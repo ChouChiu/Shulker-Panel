@@ -2,6 +2,7 @@ import type { Feature } from "../core/feature";
 import { asepriteFeature } from "./aseprite";
 import { envFeature } from "./env";
 import { extensionsFeature } from "./extensions";
+import { initFeature } from "./init";
 import { magickFeature } from "./magick";
 import { modrinthFeature } from "./modrinth";
 import { netfileFeature } from "./netfile";
@@ -24,4 +25,5 @@ export const features: Feature[] = [
   asepriteFeature,
   magickFeature,
   extensionsFeature,
+  initFeature,
 ];

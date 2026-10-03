@@ -29,6 +29,7 @@ export function activate(context: vscode.ExtensionContext): void {
     project: () =>
       projectDetector.getInfo() ?? { isValid: false, type: "generic", launcher: "", extensions: new Set() },
     tasks: () => taskScanner.getTasks(),
+    refresh: () => refreshPanel(),
   };
 
   treeProvider = new ShulkerTreeProvider(features, ctx);
@@ -85,6 +86,7 @@ async function refreshPanel(): Promise<void> {
 
   treeView.message = projectMessage(info);
   treeProvider.refresh();
+  vscode.commands.executeCommand("setContext", "shulkerPanel.isProject", info.isValid);
   vscode.commands.executeCommand("setContext", "shulkerPanel.hasModrinth", info.extensions.has(EXT_MODRINTH));
 
   if (info.shulkerDir && getAutoRefresh()) {

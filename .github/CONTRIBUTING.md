@@ -136,6 +136,7 @@ Shulker-in-editor/
 │       ├── env/
 │       ├── netfile/
 │       ├── extensions/
+│       ├── init/
 │       ├── modrinth/
 │       ├── prismarine/
 │       ├── aseprite/

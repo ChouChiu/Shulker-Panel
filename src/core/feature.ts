@@ -14,6 +14,8 @@ export interface FeatureContext {
   project(): ProjectInfo;
   /** Last scanned tasks */
   tasks(): TaskInfo[];
+  /** Re-detects the project and rebuilds the panel */
+  refresh(): Promise<void>;
 }
 
 /**
