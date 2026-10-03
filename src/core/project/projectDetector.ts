@@ -64,14 +64,13 @@ export class ProjectDetector {
   private projectInfo: ProjectInfo | null = null;
 
   /**
-   * Detects the ShulkerRDK project in the current workspace.
+   * Detects the ShulkerRDK project in the current workspace. The result is cached only through `setInfo`.
    */
   async detect(): Promise<ProjectInfo> {
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     const launcher = await resolveLauncher(workspaceFolder?.uri);
     if (!workspaceFolder) {
-      this.projectInfo = emptyInfo(launcher);
-      return this.projectInfo;
+      return emptyInfo(launcher);
     }
 
     const shulkerDir = vscode.Uri.joinPath(workspaceFolder.uri, "shulker");
@@ -79,8 +78,7 @@ export class ProjectDetector {
     const projData = await readProjJson(vscode.Uri.joinPath(shulkerDir, "proj.json"));
 
     if (!projData) {
-      this.projectInfo = { ...emptyInfo(launcher), shulkerDir: shulkerDir.fsPath, tasksDir: tasksDir.fsPath };
-      return this.projectInfo;
+      return { ...emptyInfo(launcher), shulkerDir: shulkerDir.fsPath, tasksDir: tasksDir.fsPath };
     }
 
     const extensions = await detectExtensions(shulkerDir, projData);
@@ -88,7 +86,7 @@ export class ProjectDetector {
       ([name, type]) => type === vscode.FileType.File && /^mrpack.*\.template\.json$/.test(name),
     );
 
-    this.projectInfo = {
+    return {
       isValid: true,
       type: extensions.has(EXT_MODRINTH) || hasMrpackTemplate ? "MP" : "generic",
       name: projData.ProjectName,
@@ -100,8 +98,13 @@ export class ProjectDetector {
       tasksDir: tasksDir.fsPath,
       extensions,
     };
+  }
 
-    return this.projectInfo;
+  /**
+   * Caches the info returned by the latest completed detection.
+   */
+  setInfo(info: ProjectInfo): void {
+    this.projectInfo = info;
   }
 
   /**

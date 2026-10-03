@@ -84,10 +84,17 @@ export function deactivate(): void {
 
 // ─── Panel Refresh ────────────────────────────────────────────────
 
+let refreshGeneration = 0;
+
 async function refreshPanel(): Promise<void> {
+  // Overlapping refreshes (watcher, settings, manual) must not let an older result overwrite a newer one
+  const generation = ++refreshGeneration;
   const info = await projectDetector.detect();
+  const tasks = await taskScanner.scan(info.isValid ? info.tasksDir : undefined);
+  if (generation !== refreshGeneration) return;
+  projectDetector.setInfo(info);
+  taskScanner.setTasks(tasks);
   terminalManager.setLauncher(info.launcher);
-  await taskScanner.scan(info.isValid ? info.tasksDir : undefined);
 
   treeView.message = projectMessage(info);
   treeProvider.refresh();

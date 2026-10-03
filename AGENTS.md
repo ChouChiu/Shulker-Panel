@@ -53,9 +53,9 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - Keep command and setting titles/descriptions localized in `l10n/`; update both `bundle.l10n.json` and `bundle.l10n.zh-cn.json` together.
 - Runtime strings that are not contributed metadata should go through `src/core/localize.ts`.
 - The extension only reads `workspace.workspaceFolders?.[0]`; multi-root workspaces are not supported.
-- `ProjectDetector.getInfo()` caches results; call `detect()` again after workspace or task-file changes.
+- `ProjectDetector.getInfo()` caches results; go through `refresh()` after workspace or task-file changes.
 - The extension does not preflight-check the configured `srdk` binary.
-- `.lvt` and `proj.json` watching is debounced by 300ms.
+- `.lvt` and `proj.json` watching is debounced by 300ms; overlapping refreshes drop stale results via a generation counter, so `detect()` / `scan()` only cache through `setInfo()` / `setTasks()`.
 - `TerminalManager.exec()` double-quotes any argument outside `[\p{L}\p{N}_.:/\\-]` and refuses arguments containing `"`, `` ` ``, `$`, `%` or line breaks.
 
 ## Editing Guidance

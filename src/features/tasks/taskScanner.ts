@@ -23,12 +23,11 @@ export class TaskScanner {
   private tasks: TaskInfo[] = [];
 
   /**
-   * Scans shulker/tasks/ for .lvt files and parses task metadata.
+   * Scans shulker/tasks/ for .lvt files and parses task metadata. The result is cached only through `setTasks`.
    */
   async scan(tasksDir: string | undefined): Promise<TaskInfo[]> {
     if (!tasksDir) {
-      this.tasks = [];
-      return this.tasks;
+      return [];
     }
 
     const dirUri = vscode.Uri.file(tasksDir);
@@ -36,8 +35,7 @@ export class TaskScanner {
     try {
       entries = await vscode.workspace.fs.readDirectory(dirUri);
     } catch {
-      this.tasks = [];
-      return this.tasks;
+      return [];
     }
 
     const tasks: TaskInfo[] = [];
@@ -64,8 +62,14 @@ export class TaskScanner {
     }
 
     tasks.sort((a, b) => a.name.localeCompare(b.name));
-    this.tasks = tasks;
     return tasks;
+  }
+
+  /**
+   * Caches the tasks returned by the latest completed scan.
+   */
+  setTasks(tasks: TaskInfo[]): void {
+    this.tasks = tasks;
   }
 
   /**
