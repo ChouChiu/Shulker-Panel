@@ -45,6 +45,7 @@ Feature-driven: each feature declares its tree category, `SrdkAction`s and optio
 - Commands are always `<launcher> c <args...>`; the `build` / `dev` / `publish` / `run` aliases map to `task <name>` and only run when the `.lvt` exists.
 - A project is valid when `shulker/proj.json` exists. Extensions come from `proj.json` `Extensions`, `shulker/local/extensions/<Asm>/` and legacy `shulker/extensions/<Asm>.dll`.
 - Project init (`src/features/init/`) downloads launchers from upstream `main` (release tags may pin older binaries) and derives extension identifiers from the launcher's `RELEASE_SOURCE_ID`.
+- srdk has no `ext add`: Add Extension (`src/features/extensions/`) appends identifiers to `proj.json` `Extensions` and runs `proj i`; srdk installs declared extensions and prunes undeclared ones (with a `lock.json`) on startup. Shared catalog and identifier parsing live in `src/core/project/extensionSource.ts`; the pin comes from `srdk` / `srdk.ps1`, falling back to an already declared identifier. The generated README follows `vscode.env.language` (zh / en).
 - Leave `treeView.message` unset for non-projects: VS Code hides `viewsWelcome` (the init entry) while a message is set.
 - `_`-prefixed tasks are sub-tasks: shown under a collapsed group, opened instead of run.
 - `TerminalManager.exec()` refuses to send commands in an untrusted workspace (Restricted Mode terminals never run them); keep `capabilities.untrustedWorkspaces` as `limited`.

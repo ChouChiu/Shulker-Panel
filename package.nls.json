@@ -5,6 +5,7 @@
   "viewsWelcome.initOnly": "[Initialize ShulkerRDK Project](command:shulkerPanel.initProject)",
   "viewsWelcome.noFolder": "Open a folder to use or initialize a ShulkerRDK project\n[Open Folder](command:workbench.action.files.openFolder)",
   "command.initProject.title": "Initialize ShulkerRDK Project",
+  "command.addExtension.title": "Add Extension",
   "command.refreshTasks.title": "Refresh Task List",
   "command.runTask.title": "Run Task",
   "command.runCommand.title": "Run Command",

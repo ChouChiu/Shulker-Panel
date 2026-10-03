@@ -78,6 +78,12 @@
         "icon": "$(new-folder)"
       },
       {
+        "command": "shulkerPanel.addExtension",
+        "title": "%command.addExtension.title%",
+        "category": "Shulker",
+        "icon": "$(add)"
+      },
+      {
         "command": "shulkerPanel.refreshTasks",
         "title": "%command.refreshTasks.title%",
         "category": "Shulker",
@@ -317,6 +323,11 @@
           "command": "shulkerPanel.openTaskFile",
           "when": "view == shulkerPanel.tasks && viewItem == subTaskItem",
           "group": "inline"
+        },
+        {
+          "command": "shulkerPanel.addExtension",
+          "when": "view == shulkerPanel.tasks && viewItem == extensionsCategory",
+          "group": "inline"
         }
       ],
       "commandPalette": [
@@ -406,6 +417,10 @@
         },
         {
           "command": "shulkerPanel.envRemove",
+          "when": "shulkerPanel.isProject"
+        },
+        {
+          "command": "shulkerPanel.addExtension",
           "when": "shulkerPanel.isProject"
         },
         {

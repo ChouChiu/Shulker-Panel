@@ -7,6 +7,7 @@ VS Code extension for ShulkerRDK projects, providing a sidebar task panel, comma
 ## Features
 
 - **Project Initialization** — From the panel's welcome view in a folder without `shulker/proj.json`, downloads the upstream launchers, writes `proj.json` with the extensions you pick, a sample `build.lvt`, a README with a basic tutorial, the resource root and `.gitignore` entries, then runs `srdk c proj i` to fetch the binary
+- **Add Extension** — The Extensions group (or `Shulker: Add Extension`) appends first-party or custom identifiers to `Extensions` in `shulker/proj.json`, pinned to the launcher's release, then runs `srdk c proj i` so srdk installs them
 - **Task Panel** — Lists `shulker/tasks/*.lvt`, marks the `build` / `dev` / `publish` / `run` aliases, and folds `_`-prefixed sub-tasks into their own group
 - **Core Commands** — `proj`, `verm`, `env`, `netfile`, `ext` and `help c`, with input boxes for required and optional parameters
 - **Extension-aware Groups** — Shows Modrinth (`mrp`), Prismarine (`pfm`), Aseprite (`ase`) and ResourceMagick (`png2psd`) only when the project declares or installs that extension

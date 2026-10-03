@@ -5,6 +5,7 @@
   "viewsWelcome.initOnly": "[初始化 ShulkerRDK 项目](command:shulkerPanel.initProject)",
   "viewsWelcome.noFolder": "打开文件夹以使用或初始化 ShulkerRDK 项目\n[打开文件夹](command:workbench.action.files.openFolder)",
   "command.initProject.title": "初始化 ShulkerRDK 项目",
+  "command.addExtension.title": "添加扩展",
   "command.refreshTasks.title": "刷新任务列表",
   "command.runTask.title": "执行任务",
   "command.runCommand.title": "执行命令",

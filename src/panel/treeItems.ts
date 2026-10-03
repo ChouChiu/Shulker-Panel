@@ -12,6 +12,8 @@ export const CONTEXT_SUB_TASK = "subTaskItem";
 export const CONTEXT_COMMAND = "commandItem";
 export const CONTEXT_COMMAND_INPUT = "commandItemWithInput";
 export const CONTEXT_CATEGORY = "category";
+export const CONTEXT_EXTENSIONS_CATEGORY = "extensionsCategory";
+export const CONTEXT_PANEL_COMMAND = "panelCommandItem";
 
 /**
  * Task names with contributed shortcut commands (shulkerPanel.build etc.).
@@ -110,6 +112,19 @@ export class CommandTreeItem extends vscode.TreeItem {
    */
   get commandLine(): string {
     return actionCommandLine(this.action);
+  }
+}
+
+/**
+ * A TreeItem that runs an extension command instead of a srdk action.
+ */
+export class PanelCommandTreeItem extends vscode.TreeItem {
+  constructor(label: string, iconId: string, command: string) {
+    super(label, vscode.TreeItemCollapsibleState.None);
+
+    this.iconPath = new vscode.ThemeIcon(iconId);
+    this.contextValue = CONTEXT_PANEL_COMMAND;
+    this.command = { command, title: label };
   }
 }
 
