@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 /**
  * Extension configuration keys.
  */
-const CONFIG_SECTION = "shulkerPanel";
+export const CONFIG_SECTION = "shulkerPanel";
 const CONFIG_SRDK_PATH = "srdkPath";
 const CONFIG_AUTO_REFRESH = "autoRefresh";
 const CONFIG_SHOW_WARNING = "showNonProjectWarning";
@@ -16,23 +16,11 @@ function get<T>(key: string, defaultValue?: T): T | undefined {
 }
 
 /**
- * Returns the srdk executable path.
- * Uses the user-configured path if set, otherwise auto-detects from the workspace root.
+ * Returns the user-configured srdk path, or undefined when auto-detection should be used.
  */
-export function getSrdkPath(): string {
-  const configured = get<string>(CONFIG_SRDK_PATH);
-  if (configured && configured.trim().length > 0) {
-    return configured.trim();
-  }
-
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-  if (!workspaceFolder) {
-    return "";
-  }
-
-  const os = process.platform;
-  const binaryName = os === "win32" ? "srdk.exe" : "srdk";
-  return vscode.Uri.joinPath(workspaceFolder.uri, binaryName).fsPath;
+export function getSrdkPathOverride(): string | undefined {
+  const configured = get<string>(CONFIG_SRDK_PATH)?.trim();
+  return configured ? configured : undefined;
 }
 
 /**
